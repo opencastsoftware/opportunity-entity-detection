@@ -42,6 +42,7 @@ describe("get opportunity nice-to-have skill", () => {
     const url = "https://www.digitalmarketplace.service.gov.uk/digital-outcomes-and-specialists/opportunities/13237"
 
     nock("https://www.digitalmarketplace.service.gov.uk")
+        .persist()
         .get("/digital-outcomes-and-specialists/opportunities/13237")
         .reply(200, fixture);
 

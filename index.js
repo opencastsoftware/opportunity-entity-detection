@@ -8,22 +8,24 @@ function getEssentialSkills(url) {
     console.log("getting skills for: " + url);
     let text;
 
-    const result = await fetch(url);
-    console.log(await result.text());
-
     return new Promise((resolve) => {
-        osmosis
-            .get(url)
-            .log(console.log)
-            .find('//*[@id="main-content"]/div/div/dl[6]/div[1]/dd/ul')
-            .set('text')
-            .data(data => {
-                text = data;
-                console.log(data);
-            })
-            .debug(console.log)
-            .error((err) => console.log(err))
-            .done(() => resolve(text));
+        fetch(url).then(r => {
+            r.text().then(t => console.log(t.length));
+
+
+            osmosis
+                .get(url)
+                .log(console.log)
+                .find('//*[@id="main-content"]/div/div/dl[6]/div[1]/dd/ul')
+                .set('text')
+                .data(data => {
+                    text = data;
+                    console.log(data);
+                })
+                .debug(console.log)
+                .error((err) => console.log(err))
+                .done(() => resolve(text));
+        });
 
     });
 }
