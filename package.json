@@ -1,0 +1,26 @@
+{
+  "name": "opportunity-entity-detection",
+  "version": "1.0.0",
+  "description": "Reads opportunities from a queue and finds the entities in the skills section",
+  "main": "index.js",
+  "dependencies": {
+    "jest": "^26.6.3",
+    "osmosis": "^1.1.10"
+  },
+  "devDependencies": {
+    "nock": "^13.0.5"
+  },
+  "scripts": {
+    "test": "jest"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/opencastsoftware/opportunity-entity-detection.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/opencastsoftware/opportunity-entity-detection/issues"
+  },
+  "homepage": "https://github.com/opencastsoftware/opportunity-entity-detection#readme"
+}

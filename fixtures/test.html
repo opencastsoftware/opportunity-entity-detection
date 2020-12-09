@@ -1,0 +1,1172 @@
+
+<!DOCTYPE html>
+<html lang="en" class="govuk-template ">
+  <head>
+    <meta charset="utf-8">
+    <title>
+  Data Analysis &amp; Insight Capability Partner - Digital Marketplace
+</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+    <meta name="theme-color" content="#0b0c0c"> 
+    
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+    
+      <link rel="shortcut icon" sizes="16x16 32x32 48x48" href="/static/images/favicon.ico" type="image/x-icon">
+      <link rel="mask-icon" href="/static/images/govuk-mask-icon.svg" color="#0b0c0c"> 
+      <link rel="apple-touch-icon" sizes="180x180" href="/static/images/govuk-apple-touch-icon-180x180.png">
+      <link rel="apple-touch-icon" sizes="167x167" href="/static/images/govuk-apple-touch-icon-167x167.png">
+      <link rel="apple-touch-icon" sizes="152x152" href="/static/images/govuk-apple-touch-icon-152x152.png">
+      <link rel="apple-touch-icon" href="/static/images/govuk-apple-touch-icon.png">
+    
+
+    
+  
+
+
+
+
+
+
+
+
+  
+  <meta name="google-site-verification" content="TKGSGZnfHpx1-lKOthI17ANtwk7fz3F4Sbr77I0ppO0">
+
+  <link type="text/css" rel="stylesheet" href="/static/stylesheets/application.css?43ad6daab634656d5cd1b86703d148fa" />
+  
+
+    
+    
+    <meta property="og:image" content="/static/images/govuk-opengraph-image.png">
+  </head>
+  <body class="govuk-template__body ">
+    <script>document.body.className = ((document.body.className) ? document.body.className + ' js-enabled' : 'js-enabled');</script>
+    
+
+    
+      <a href="#main-content" class="govuk-skip-link">Skip to main content</a>
+    
+
+    
+  
+  
+
+
+
+
+<div id="dm-cookie-banner" class="dm-cookie-banner govuk-width-container" data-module="dm-cookie-banner" role="region" aria-label="Cookie Banner" aria-describedby="dm-cookie-banner__heading">
+  <div class="dm-cookie-banner__wrapper">
+    <h2 class="dm-cookie-banner__heading govuk-heading-m" id="dm-cookie-banner__heading">
+      Can we store analytics cookies on your device?
+    </h2>
+    <p class="govuk-body">
+      Analytics cookies help us understand how our website is being used.
+    </p>
+    <div class="dm-cookie-banner__buttons">
+      <button class="govuk-button dm-cookie-banner__button dm-cookie-banner__button--accept" type="submit" data-accept-cookies="true" aria-describedby="dm-cookie-banner__heading" data-module="govuk-button">
+        Yes<span class="govuk-visually-hidden">, Digital Marketplace can store analytics cookies on your device</span>
+      </button>
+      <button class="govuk-button dm-cookie-banner__button dm-cookie-banner__button--reject" type="submit" data-accept-cookies="false" aria-describedby="dm-cookie-banner__heading" data-module="govuk-button">
+        No<span class="govuk-visually-hidden">, Digital Marketplace cannot store analytics cookies on your device</span>
+      </button>
+      <a class="govuk-link dm-cookie-banner__link" href="/cookies">How Digital Marketplace uses cookies</a>
+    </div>
+  </div>
+
+  <div class="dm-cookie-banner__confirmation" tabindex="-1">
+    <p class="dm-cookie-banner__confirmation-message govuk-body">
+      You can <a class="govuk-link" href="/user/cookie-settings">change your cookie settings</a> at any time.
+    </p>
+    <button class="dm-cookie-banner__hide-button govuk-link" data-hide-cookie-banner="true" role="link" data-module="govuk-button">Hide</button>
+  </div>
+</div>
+
+  
+
+
+
+
+
+  
+  
+
+
+
+  
+
+<header class="govuk-header " role="banner" data-module="govuk-header">
+  <div class="govuk-header__container govuk-width-container">
+    <div class="govuk-header__logo">
+      <a href="/" class="govuk-header__link govuk-header__link--homepage">
+        <span class="govuk-header__logotype">
+          <svg
+            aria-hidden="true"
+            focusable="false"
+            class="govuk-header__logotype-crown"
+            xmlns="http://www.w3.org/2000/svg"
+            viewBox="0 0 132 97"
+            height="30"
+            width="36"
+          >
+            <path
+              fill="currentColor" fill-rule="evenodd"
+              d="M25 30.2c3.5 1.5 7.7-.2 9.1-3.7 1.5-3.6-.2-7.8-3.9-9.2-3.6-1.4-7.6.3-9.1 3.9-1.4 3.5.3 7.5 3.9 9zM9 39.5c3.6 1.5 7.8-.2 9.2-3.7 1.5-3.6-.2-7.8-3.9-9.1-3.6-1.5-7.6.2-9.1 3.8-1.4 3.5.3 7.5 3.8 9zM4.4 57.2c3.5 1.5 7.7-.2 9.1-3.8 1.5-3.6-.2-7.7-3.9-9.1-3.5-1.5-7.6.3-9.1 3.8-1.4 3.5.3 7.6 3.9 9.1zm38.3-21.4c3.5 1.5 7.7-.2 9.1-3.8 1.5-3.6-.2-7.7-3.9-9.1-3.6-1.5-7.6.3-9.1 3.8-1.3 3.6.4 7.7 3.9 9.1zm64.4-5.6c-3.6 1.5-7.8-.2-9.1-3.7-1.5-3.6.2-7.8 3.8-9.2 3.6-1.4 7.7.3 9.2 3.9 1.3 3.5-.4 7.5-3.9 9zm15.9 9.3c-3.6 1.5-7.7-.2-9.1-3.7-1.5-3.6.2-7.8 3.7-9.1 3.6-1.5 7.7.2 9.2 3.8 1.5 3.5-.3 7.5-3.8 9zm4.7 17.7c-3.6 1.5-7.8-.2-9.2-3.8-1.5-3.6.2-7.7 3.9-9.1 3.6-1.5 7.7.3 9.2 3.8 1.3 3.5-.4 7.6-3.9 9.1zM89.3 35.8c-3.6 1.5-7.8-.2-9.2-3.8-1.4-3.6.2-7.7 3.9-9.1 3.6-1.5 7.7.3 9.2 3.8 1.4 3.6-.3 7.7-3.9 9.1zM69.7 17.7l8.9 4.7V9.3l-8.9 2.8c-.2-.3-.5-.6-.9-.9L72.4 0H59.6l3.5 11.2c-.3.3-.6.5-.9.9l-8.8-2.8v13.1l8.8-4.7c.3.3.6.7.9.9l-5 15.4v.1c-.2.8-.4 1.6-.4 2.4 0 4.1 3.1 7.5 7 8.1h.2c.3 0 .7.1 1 .1.4 0 .7 0 1-.1h.2c4-.6 7.1-4.1 7.1-8.1 0-.8-.1-1.7-.4-2.4V34l-5.1-15.4c.4-.2.7-.6 1-.9zM66 92.8c16.9 0 32.8 1.1 47.1 3.2 4-16.9 8.9-26.7 14-33.5l-9.6-3.4c1 4.9 1.1 7.2 0 10.2-1.5-1.4-3-4.3-4.2-8.7L108.6 76c2.8-2 5-3.2 7.5-3.3-4.4 9.4-10 11.9-13.6 11.2-4.3-.8-6.3-4.6-5.6-7.9 1-4.7 5.7-5.9 8-.5 4.3-8.7-3-11.4-7.6-8.8 7.1-7.2 7.9-13.5 2.1-21.1-8 6.1-8.1 12.3-4.5 20.8-4.7-5.4-12.1-2.5-9.5 6.2 3.4-5.2 7.9-2 7.2 3.1-.6 4.3-6.4 7.8-13.5 7.2-10.3-.9-10.9-8-11.2-13.8 2.5-.5 7.1 1.8 11 7.3L80.2 60c-4.1 4.4-8 5.3-12.3 5.4 1.4-4.4 8-11.6 8-11.6H55.5s6.4 7.2 7.9 11.6c-4.2-.1-8-1-12.3-5.4l1.4 16.4c3.9-5.5 8.5-7.7 10.9-7.3-.3 5.8-.9 12.8-11.1 13.8-7.2.6-12.9-2.9-13.5-7.2-.7-5 3.8-8.3 7.1-3.1 2.7-8.7-4.6-11.6-9.4-6.2 3.7-8.5 3.6-14.7-4.6-20.8-5.8 7.6-5 13.9 2.2 21.1-4.7-2.6-11.9.1-7.7 8.8 2.3-5.5 7.1-4.2 8.1.5.7 3.3-1.3 7.1-5.7 7.9-3.5.7-9-1.8-13.5-11.2 2.5.1 4.7 1.3 7.5 3.3l-4.7-15.4c-1.2 4.4-2.7 7.2-4.3 8.7-1.1-3-.9-5.3 0-10.2l-9.5 3.4c5 6.9 9.9 16.7 14 33.5 14.8-2.1 30.8-3.2 47.7-3.2z"
+            ></path>
+            <image src="/assets/images/govuk-logotype-crown.png" xlink:href="" class="govuk-header__logotype-crown-fallback-image" width="36" height="32"></image>
+          </svg>
+          <span class="govuk-header__logotype-text">
+            GOV.UK
+          </span>
+        </span>
+        
+        <span class="govuk-header__product-name">
+          Digital Marketplace
+        </span>
+        
+      </a>
+    </div>
+    
+    <div class="govuk-header__content">
+    
+    
+    <button type="button" class="govuk-header__menu-button govuk-js-header-toggle" aria-controls="navigation" aria-label="Show or hide navigation menu">Menu</button>
+    <nav>
+      <ul id="navigation" class="govuk-header__navigation " aria-label="Navigation menu">
+        
+          
+            <li class="govuk-header__navigation-item">
+              
+                <a class="govuk-header__link" href="https://www.gov.uk/guidance/buying-and-selling-on-the-digital-marketplace">
+              
+                Guidance
+              
+                </a>
+              
+            </li>
+          
+        
+          
+            <li class="govuk-header__navigation-item">
+              
+                <a class="govuk-header__link" href="/help">
+              
+                Help
+              
+                </a>
+              
+            </li>
+          
+        
+          
+            <li class="govuk-header__navigation-item">
+              
+                <a class="govuk-header__link" href="/user/login">
+              
+                Log in
+              
+                </a>
+              
+            </li>
+          
+        
+      </ul>
+    </nav>
+    
+    </div>
+    
+  </div>
+</header>
+
+
+    
+      <div class="govuk-width-container ">
+        
+  
+    <div class="govuk-phase-banner">
+  <p class="govuk-phase-banner__content">
+    <strong class="govuk-tag govuk-phase-banner__content__tag">
+      beta
+    </strong>
+    <span class="govuk-phase-banner__text">
+      Help us improve the Digital Marketplace - <a class="govuk-link" href="/help">send your feedback</a>
+    </span>
+  </p>
+</div>
+  
+  
+<div class="govuk-breadcrumbs ">
+  <ol class="govuk-breadcrumbs__list">
+  
+    
+    <li class="govuk-breadcrumbs__list-item">
+      <a class="govuk-breadcrumbs__link" href="/">Digital Marketplace</a>
+    </li>
+    
+  
+    
+    <li class="govuk-breadcrumbs__list-item">
+      <a class="govuk-breadcrumbs__link" href="/digital-outcomes-and-specialists/opportunities">Supplier opportunities</a>
+    </li>
+    
+  
+  </ol>
+</div>
+
+
+        <main class="govuk-main-wrapper " id="main-content" role="main">
+          
+  
+    
+      
+    
+  
+  
+    
+  
+  
+
+
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-full">
+    <section
+    data-module="dm-banner"
+    role="region"
+    aria-label="This opportunity is closed for applications"
+    class="dm-banner"
+>
+    <h2
+        class="dm-banner__title dm-banner__title--large"
+    >
+        This opportunity is closed for applications
+    </h2>
+        <div class="dm-banner__body">
+            The deadline was Tuesday 20 October 2020
+        </div>
+    
+</section>
+  </div>
+</div>
+
+
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-two-thirds">
+    <span class="govuk-caption-l">HM Land Registry</span>
+    <h1 class="govuk-heading-l">Data Analysis &amp; Insight Capability Partner</h1>
+    <span data-lot="digital-outcomes"></span>
+  </div>
+</div>
+
+<div class="govuk-grid-row govuk-!-margin-bottom-9">
+  <div class="govuk-grid-column-one-third app-stat-block" id="incomplete-applications">
+   <h2 class="govuk-!-margin-bottom-0">
+      <span class="govuk-body govuk-!-margin-bottom-0 govuk-!-font-weight-bold govuk-!-font-size-36 govuk-!-display-block">24</span>
+      <span class="govuk-body govuk-!-font-weight-bold">Incomplete applications</span>
+   </h2>
+   <p class="govuk-body govuk-!-font-size-16">18 SME, 6 large</p>
+</div>
+<div class="govuk-grid-column-one-third app-stat-block" id="completed-applications">
+   <h2 class="govuk-!-margin-bottom-0">
+      <span class="govuk-body govuk-!-margin-bottom-0  govuk-!-font-weight-bold govuk-!-font-size-36 govuk-!-display-block">20</span>
+      <span class="govuk-body govuk-!-font-weight-bold ">Completed applications</span>
+   </h2>
+   <p class="govuk-body govuk-!-font-size-16">10 SME, 10 large</p>
+</div>
+
+</div>
+
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-full">
+    <h2 class="govuk-visually-hidden">Important dates</h2>
+
+
+  
+
+  
+
+  
+<dl class="govuk-summary-list app-govuk-summary-list app-govuk-summary-list--top-border govuk-!-margin-bottom-8" id="opportunity-important-dates">
+  
+    
+      <div class="govuk-summary-list__row">
+        <dt class="govuk-summary-list__key">
+          Published
+        </dt>
+        <dd class="govuk-summary-list__value">
+          Tuesday 6 October 2020
+        </dd>
+        
+      </div>
+    
+  
+    
+      <div class="govuk-summary-list__row">
+        <dt class="govuk-summary-list__key">
+          Deadline for asking questions
+        </dt>
+        <dd class="govuk-summary-list__value">
+          Tuesday 13 October 2020 at 11:59pm GMT
+        </dd>
+        
+      </div>
+    
+  
+    
+      <div class="govuk-summary-list__row">
+        <dt class="govuk-summary-list__key">
+          Closing date for applications
+        </dt>
+        <dd class="govuk-summary-list__value">
+          Tuesday 20 October 2020 at 11:59pm GMT
+        </dd>
+        
+      </div>
+    
+  
+</dl>
+
+
+  <h2 id="opportunity-attributes-1" class="govuk-heading-m app-summary-list-heading">Overview</h2>
+  
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+<dl class="govuk-summary-list app-govuk-summary-list app-govuk-summary-list--top-border govuk-!-margin-bottom-8">
+  
+    
+      <div class="govuk-summary-list__row">
+        <dt class="govuk-summary-list__key">
+          Summary of the work
+        </dt>
+        <dd class="govuk-summary-list__value">
+          HM Land Registry is looking for a partner to collaboratively support our Data Science, Data Management and Analysis, and Performance Analysis practices. The Partner will build specialist knowledge and capability to support delivery of Analysis and Insight, helping to put systems into production within our land and property registration services.
+        </dd>
+        
+      </div>
+    
+  
+    
+      <div class="govuk-summary-list__row">
+        <dt class="govuk-summary-list__key">
+          Latest start date
+        </dt>
+        <dd class="govuk-summary-list__value">
+          Monday 14 December 2020
+        </dd>
+        
+      </div>
+    
+  
+    
+      <div class="govuk-summary-list__row">
+        <dt class="govuk-summary-list__key">
+          Expected contract length
+        </dt>
+        <dd class="govuk-summary-list__value">
+          The expected contract length is 2-years.
+        </dd>
+        
+      </div>
+    
+  
+    
+      <div class="govuk-summary-list__row">
+        <dt class="govuk-summary-list__key">
+          Location
+        </dt>
+        <dd class="govuk-summary-list__value">
+          No specific location, for example they can work remotely
+        </dd>
+        
+      </div>
+    
+  
+    
+      <div class="govuk-summary-list__row">
+        <dt class="govuk-summary-list__key">
+          Organisation the work is for
+        </dt>
+        <dd class="govuk-summary-list__value">
+          HM Land Registry
+        </dd>
+        
+      </div>
+    
+  
+    
+      <div class="govuk-summary-list__row">
+        <dt class="govuk-summary-list__key">
+          Budget range
+        </dt>
+        <dd class="govuk-summary-list__value">
+          Budget approval is subject to Cabinet Office spending controls, service assessments and HM Land Registry governance. A pipeline of activity is foreseen over the next 24 months, with an indicative budget against the requirements for this capability being approx £3.2m, but that scope could expand or contract. Each Statement of Work (SOW) will be assigned a set cost to enable tracking. HM Land Registry does not commit to any minimum or maximum spend at this point.
+        </dd>
+        
+      </div>
+    
+  
+</dl>
+
+  <h2 id="opportunity-attributes-2" class="govuk-heading-m app-summary-list-heading">About the work</h2>
+  
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+<dl class="govuk-summary-list app-govuk-summary-list app-govuk-summary-list--top-border govuk-!-margin-bottom-8">
+  
+    
+      <div class="govuk-summary-list__row">
+        <dt class="govuk-summary-list__key">
+          Why the work is being done
+        </dt>
+        <dd class="govuk-summary-list__value">
+          HM Land Registry’s Digital and Data transformation programmes will deliver a new generation of end-to-end land and property registration and data services. Currently, applications to change our registers are based around paper or PDF forms, supported by manual checking processes which are highly effective but time-consuming and expensive to provide.  Our wider transformation programme will deliver digital services that will improve usability and collect validated data in order to make it simpler, cheaper and faster to view, create or change registered property information. We are using state-of-the-art fraud detection to protect the integrity of the register and transforming our internal systems, replacing multiple paper-based processes with a single, digital solution with high levels of automation. <br><br>We are currently bolstering our Analysis and Insight capability within our Digital, Data and  Technology (DDaT) Directorate to tackle some of these challenges. We are looking for collaborative support in developing practical applications, across the full spectrum of work within our Data Science, Data Management and Analysis and Performance Analysis Practices, to consolidate in-house skills, develop knowledge and build live services for internal and external users.
+        </dd>
+        
+      </div>
+    
+  
+    
+      <div class="govuk-summary-list__row">
+        <dt class="govuk-summary-list__key">
+          Problem to be solved
+        </dt>
+        <dd class="govuk-summary-list__value">
+          To achieve our ambitions to develop and deliver digital services and enable the disaggregation and release of core register data sets as bespoke products and services we are looking for a partner to support our existing capability, help demonstrate the art of the possible across HMLR business areas and collaborate on building live, production systems. <br><br>We envision a range of activities – from designing and implementing real time data visualization, geospatial mapping, timeseries analysis, development of Machine Learning models and production deployment of Deep Learning based services - over the next 12 – 24 months. A Capability Partner will support our delivery teams and provide embedded subject matter expertise. We need to be able to react quickly to changes in demand, ensure we have the right people on the right teams to meet our programme goals and objectives and inject new knowledge and experience into our organisation. <br><br>We are looking to accelerate our transformation programme in a relatively short timeframe (3 – 4 years). HMLR will be developing large scale data engineering, analysis and machine learning pipelines along with dedicated data platforms to transform the capability of the organisation, provide efficiency savings and create novel data products and internal/external services.
+        </dd>
+        
+      </div>
+    
+  
+    
+      <div class="govuk-summary-list__row">
+        <dt class="govuk-summary-list__key">
+          Who the users are and what they need to do
+        </dt>
+        <dd class="govuk-summary-list__value">
+          As a user of HMLR services (both internal and external), access user-focused services that meet my needs; <br><br>As a user of HMLR data, efficiently access high quality published data that meets my needs; <br><br>As a senior leader, quickly understand where analysis and insight activities can bring value in my organisation; <br><br>As a central business function, access data and insight to enable evidence-based decision making; <br><br>As a service delivery team, understand the value of data science and analysis in delivering better services for our users;  <br><br>As a Software Developer, how to integrate reliable data science solutions into production; <br><br>As a Data Analyst, easily access a variety of datasets, tools and expertise to enable a range of analytics; <br><br>As a Data Scientist, easily access to a variety of datasets, flexible tools and compute resources to develop and expose models for internal and external users to consume;
+        </dd>
+        
+      </div>
+    
+  
+    
+      <div class="govuk-summary-list__row">
+        <dt class="govuk-summary-list__key">
+          Early market engagement
+        </dt>
+        <dd class="govuk-summary-list__value">
+          
+        </dd>
+        
+      </div>
+    
+  
+    
+      <div class="govuk-summary-list__row">
+        <dt class="govuk-summary-list__key">
+          Any work that’s already been done
+        </dt>
+        <dd class="govuk-summary-list__value">
+          HMLR’s Digital and Data programmes are in year 3 of a 5-year funding approval. Work has focused on improving efficiency and reducing waste in viewing, creating or changing registered information on land and property.  <br><br>Our Data Management and Analysis Practice works across programmes to provide spatial analysis, visualisation and services to support the delivery programmes. Our Performance Analysis Practice models service uptake and benefits, establishes measures of success and appropriate targets. Our Data Science Practice undertakes pre-Discovery R&amp;D into ‘the art of the possible’ and supports delivery teams to operationalise a variety of models to automate key services.
+        </dd>
+        
+      </div>
+    
+  
+    
+      <div class="govuk-summary-list__row">
+        <dt class="govuk-summary-list__key">
+          Existing team
+        </dt>
+        <dd class="govuk-summary-list__value">
+          Our Data Management and Analysis, Performance Analysis and Data Science Practices are actively growing.  We have vibrant Communities of Interest and are formalising our practice-based model. In addition to the central role we play within the DDaT directorate, we take the lead in developing and enhancing technical solutions and architecture, and carrying out quality assurance and improvement tasks, to enable delivery and a wide-ranging transformation activities. We implement and develop tools, techniques and methods for enhancing and enriching our core data products as well as develop data collection approaches and deliver analysis to derive actionable insights from our data.
+        </dd>
+        
+      </div>
+    
+  
+    
+      <div class="govuk-summary-list__row">
+        <dt class="govuk-summary-list__key">
+          Current phase
+        </dt>
+        <dd class="govuk-summary-list__value">
+          Not applicable
+        </dd>
+        
+      </div>
+    
+  
+</dl>
+
+  <h2 id="opportunity-attributes-3" class="govuk-heading-m app-summary-list-heading">Work setup</h2>
+  
+  
+
+  
+
+  
+
+  
+<dl class="govuk-summary-list app-govuk-summary-list app-govuk-summary-list--top-border govuk-!-margin-bottom-8">
+  
+    
+      <div class="govuk-summary-list__row">
+        <dt class="govuk-summary-list__key">
+          Address where the work will take place
+        </dt>
+        <dd class="govuk-summary-list__value">
+          Seaton Court, 2 William Prance Road, Plymouth, Devon, PL6 5WS, although travel across England may be required
+        </dd>
+        
+      </div>
+    
+  
+    
+      <div class="govuk-summary-list__row">
+        <dt class="govuk-summary-list__key">
+          Working arrangements
+        </dt>
+        <dd class="govuk-summary-list__value">
+          At the time of writing, due to the COVID-19 pandemic it is anticipated that delivery will be remote. <br>Our Data Management and Analysis, Performance Analysis and Data Science teams are all located in Plymouth, so future requirements for regular on-site collaboration will be required and this will  be identified within individual Statement of Work (SOW). <br><br>For onsite work, a minimum 3 days co-location per week is strongly preferred, as delivery will be centrally within our Practices or embedded with digital delivery teams.
+        </dd>
+        
+      </div>
+    
+  
+    
+      <div class="govuk-summary-list__row">
+        <dt class="govuk-summary-list__key">
+          Security clearance
+        </dt>
+        <dd class="govuk-summary-list__value">
+          HM Land Registry requires all supplier staff to have baseline personnel security standard clearance (BPSS). Some work may require security clearance checks - this will be detailed in the SOW.
+        </dd>
+        
+      </div>
+    
+  
+</dl>
+
+  <h2 id="opportunity-attributes-4" class="govuk-heading-m app-summary-list-heading">Additional information</h2>
+  
+  
+
+  
+<dl class="govuk-summary-list app-govuk-summary-list app-govuk-summary-list--top-border govuk-!-margin-bottom-8">
+  
+    
+      <div class="govuk-summary-list__row">
+        <dt class="govuk-summary-list__key">
+          Additional terms and conditions
+        </dt>
+        <dd class="govuk-summary-list__value">
+          The standard terms and conditions of a DOS framework agreement call-off contract apply. <br><br>Any claim for travel and subsistence will be made in accordance with HM Land Registry&#39;s travel and subsistence policy. <br><br>T&amp;S will not be paid for travel to the &#34;home&#34; office which will usually be Plymouth and specified in the SOW.
+        </dd>
+        
+      </div>
+    
+  
+</dl>
+
+  <h2 id="opportunity-attributes-5" class="govuk-heading-m app-summary-list-heading">Skills and experience</h2>
+  
+  <p class="govuk-body govuk-!-margin-top-3">Buyers will use the essential and nice-to-have skills and experience to help them evaluate suppliers’ technical competence.</p>
+  
+  
+  
+
+  
+
+  
+<dl class="govuk-summary-list app-govuk-summary-list app-govuk-summary-list--top-border govuk-!-margin-bottom-8">
+  
+    
+      <div class="govuk-summary-list__row">
+        <dt class="govuk-summary-list__key">
+          Essential skills and experience
+        </dt>
+        <dd class="govuk-summary-list__value">
+          <ul class="govuk-list govuk-list--bullet">
+          <li>Have experience of developing and establishing enterprise analytics and data innovation strategies, along with associated implementation plans;</li>
+          <li>Have experience providing subject matter expertise across a wide range of internally and externally facing projects to conceptualize, design and deliver data analytics and insight projects;</li>
+          <li>Demonstrable experience supporting agile delivery team’s application of data science, statistical analysis and geospatial mapping whilst seamlessly integrating into client teams;</li>
+          <li>Experience of eliciting analytical requirements from a range of stakeholders, understand user needs and communicating technical/data principles, tools, techniques and requirements between non-technical business audiences and technical specialists;</li>
+          <li>Practical experience identifying business problems and datasets suitable for data science and the development of new products/services, as well as prioritising, planning and executing Research &amp; Development activities;</li>
+          <li>Experience designing and deliver engaging data stories using effective data visualisation supporting analysis communication. Demonstrate a range of techniques, including dashboarding, in open source and enterprise reporting tools (e.g. PowerBI);</li>
+          <li>Have experience of delivering performance analysis for digital services including use of A/B testing, Google Analytics and querying relational databases to gather data for analysis;</li>
+          <li>Evidence of ability to discover and assess data for development of new products/services, including objective determination of data quality/‘fit for purpose’, understanding caveats and limitations, relationships and linkages;</li>
+          <li>Delivery of geospatial analysis, visualisation and services to support digital transformation programmes (using tools like ArcGIS Enterprise / Pro / FME / QGIS);</li>
+          <li>Demonstrable practical experience in delivering high value end-to-end data science projects in production environments, using modern architectures, cloud compute platforms and both open source and enterprise tools;</li>
+          <li>Significant practical experience in leading edge data science and machine learning techniques applied at scale, particularly in the fields of NLP, geospatial, computer vision and knowledge graphs/mining;</li>
+          <li>Practical experience of operating and maintaining end-to-end platforms for robust, low latency production data science, with associated monitoring, assurance and governance.</li>
+        </ul>
+        </dd>
+        
+      </div>
+    
+  
+    
+      <div class="govuk-summary-list__row">
+        <dt class="govuk-summary-list__key">
+          Nice-to-have skills and experience
+        </dt>
+        <dd class="govuk-summary-list__value">
+          <ul class="govuk-list govuk-list--bullet">
+          <li>Experience of evaluating the impact of service delivery, including approaches set out in the Magenta Book (<a href="https://www.gov.uk/government/publications/the-magenta-book);" class="govuk-link" rel="external">https://www.gov.uk/government/publications/the-magenta-book);</a></li>
+          <li>Experience creating using and interpreting data specifications and standards;</li>
+          <li>Experience identifying interactions and interdependencies across data sets to enable integration of data to support new services;</li>
+          <li>Ability to objectively demonstrate how previous collaborative experiences have measurably grown organisational capability through knowledge exchange;</li>
+          <li>Demonstrable experience of promoting a collaborative culture and data curiosity organisations, particularly when working in partnership with customers and as part of a multi-supplier teams;</li>
+          <li>Practical experience of establishing and executing processes to take analytics from exploratory/development environments into production;</li>
+          <li>Practical experience developing and maintaining reproducible data science pipelines using distributed compute over multi-cloud environments;</li>
+          <li>Experience deploying and operating enterprise-level, analytics platforms on premises and in-cloud;</li>
+          <li>Experience of writing and presenting engaging, clear and effective technical documentation, reports, papers, scientific manuscripts and presentations (and coaching others to do the same);</li>
+          <li>Experience building services to Government ethics guidance, data security best practice and using privacy preserving methodologies in analytics;</li>
+          <li>Practical analytics/data engineering with (or Accredited training in):   ArcGIS/QGIS,   Python (scientific/geospatial/ML stacks) and/or Scala,   Distributed compute (Dask/Spark),   Deep Learning frameworks (Tensorflow, PyTorch etc.),   Graph databases,   Linked open data (RDF, SPARQL).</li>
+        </ul>
+        </dd>
+        
+      </div>
+    
+  
+</dl>
+
+  <h2 id="opportunity-attributes-6" class="govuk-heading-m app-summary-list-heading">How suppliers will be evaluated</h2>
+  
+  <p class="govuk-body govuk-!-margin-top-3">All suppliers will be asked to provide a written proposal.</p>
+  
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+<dl class="govuk-summary-list app-govuk-summary-list app-govuk-summary-list--top-border govuk-!-margin-bottom-8">
+  
+    
+      <div class="govuk-summary-list__row">
+        <dt class="govuk-summary-list__key">
+          How many suppliers to evaluate
+        </dt>
+        <dd class="govuk-summary-list__value">
+          6
+        </dd>
+        
+      </div>
+    
+  
+    
+      <div class="govuk-summary-list__row">
+        <dt class="govuk-summary-list__key">
+          Proposal criteria
+        </dt>
+        <dd class="govuk-summary-list__value">
+          <ul class="govuk-list govuk-list--bullet">
+          <li>Your approach to Innovation</li>
+          <li>Your delivery approach</li>
+          <li>Building Capability</li>
+          <li>Your approach to quality</li>
+          <li>Accountability</li>
+        </ul>
+        </dd>
+        
+      </div>
+    
+  
+    
+      <div class="govuk-summary-list__row">
+        <dt class="govuk-summary-list__key">
+          Cultural fit criteria
+        </dt>
+        <dd class="govuk-summary-list__value">
+          <ul class="govuk-list govuk-list--bullet">
+          <li>Collaborating in a team</li>
+          <li>Collaboration across teams</li>
+          <li>Knowledge Transfer</li>
+          <li>Stakeholder Management</li>
+          <li>Learning and Development</li>
+          <li>Continuous Improvement</li>
+          <li>User centricity</li>
+        </ul>
+        </dd>
+        
+      </div>
+    
+  
+    
+      <div class="govuk-summary-list__row">
+        <dt class="govuk-summary-list__key">
+          Payment approach
+        </dt>
+        <dd class="govuk-summary-list__value">
+          Capped time and materials
+        </dd>
+        
+      </div>
+    
+  
+    
+      <div class="govuk-summary-list__row">
+        <dt class="govuk-summary-list__key">
+          Additional assessment methods
+        </dt>
+        <dd class="govuk-summary-list__value">
+          <ul class="govuk-list govuk-list--bullet">
+          <li>Case study</li>
+          <li>Work history</li>
+          <li>Reference</li>
+          <li>Presentation</li>
+        </ul>
+        </dd>
+        
+      </div>
+    
+  
+    
+      <div class="govuk-summary-list__row">
+        <dt class="govuk-summary-list__key">
+          Evaluation weighting
+        </dt>
+        <dd class="govuk-summary-list__value">
+          <p class="govuk-body govuk-!-margin-top-0 govuk-!-margin-bottom-1">Technical competence</p>
+        <div>50%</div>
+        <p class="govuk-body govuk-!-margin-top-3 govuk-!-margin-bottom-1">Cultural fit</p>
+        <div>15%</div>
+        <p class="govuk-body govuk-!-margin-top-3 govuk-!-margin-bottom-1">Price</p>
+        <div>35%</div>
+        </dd>
+        
+      </div>
+    
+  
+</dl>
+
+  </div>
+</div>
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-full">
+    
+
+<h2 id="clarification-questions" class="govuk-heading-m app-summary-list-heading">Questions asked by suppliers</h2>
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+<dl class="govuk-summary-list app-govuk-summary-list app-govuk-summary-list--top-border govuk-!-margin-bottom-8">
+  
+    
+      <div class="govuk-summary-list__row">
+        <dt class="govuk-summary-list__key">
+          1. Is there a current or preferred incumbent?
+        </dt>
+        <dd class="govuk-summary-list__value">
+          There is no current or preferred incumbent for this Capability Partner opportunity.
+        </dd>
+        
+      </div>
+    
+  
+    
+      <div class="govuk-summary-list__row">
+        <dt class="govuk-summary-list__key">
+          2. Is there any incumbent for this work?
+        </dt>
+        <dd class="govuk-summary-list__value">
+          There is no current incumbent for this Capability Partner opportunity.
+        </dd>
+        
+      </div>
+    
+  
+    
+      <div class="govuk-summary-list__row">
+        <dt class="govuk-summary-list__key">
+          3. Can you advise whether their is an incumbent currently providing this service and if so who they are?
+        </dt>
+        <dd class="govuk-summary-list__value">
+          There is no incumbent for this Capability Partner opportunity.
+        </dd>
+        
+      </div>
+    
+  
+    
+      <div class="govuk-summary-list__row">
+        <dt class="govuk-summary-list__key">
+          4. Who from your team will be scoring applications for this opportunity and what positions do they hold?
+        </dt>
+        <dd class="govuk-summary-list__value">
+          Responses will be reviewed by our Heads of Practice and Senior Management structure involved in managing the account and relationship.
+        </dd>
+        
+      </div>
+    
+  
+    
+      <div class="govuk-summary-list__row">
+        <dt class="govuk-summary-list__key">
+          5. Please can you provide clarity over the phases of the procurement process. These requests usually ask for 100 word answers on the ‘Must Have’ and ‘Nice to Have’ skills which are then used to down-select prior to the written proposal. However there’s no mention of 100 word answers and instead says ‘All suppliers will be asked to provide a written proposal’. But it also says that only 6 suppliers will be evaluated? Please can you provide guidance?
+        </dt>
+        <dd class="govuk-summary-list__value">
+          This procurement follows the stages of the standard DOS exercises.  For Stage 1 you must provide 100 word responses to the essential and nice to have criteria.  This will then be evaluated and shortlisted to a maximum of 6 suppliers who will progress to Stage 2.  Stage 2 will invite the shortlisted suppliers to submit a written proposal and attend a presentation.
+        </dd>
+        
+      </div>
+    
+  
+    
+      <div class="govuk-summary-list__row">
+        <dt class="govuk-summary-list__key">
+          6. Will the Authority accept consortium bids for this opportunity?
+        </dt>
+        <dd class="govuk-summary-list__value">
+          The opportunity will be awarded to one prime partner.  It is possible provide a response form a consortium, but as noted there would be one contract with the prime and any others listed as sub-contractors.
+        </dd>
+        
+      </div>
+    
+  
+    
+      <div class="govuk-summary-list__row">
+        <dt class="govuk-summary-list__key">
+          7. Can the Authority advise on down-stream timescales for the competition. In particular, when supplies will be notified of down-selection and the likely submission deadline for the written proposal?
+        </dt>
+        <dd class="govuk-summary-list__value">
+          Indicative timescales: <br><br>Shortlisted supplier invited to submit a proposal – w/c 02nd November <br><br>Stage 2 response deadline <br><br>w/c 16th November <br><br>Presentations <br><br>w/c 30th November <br><br>Contract Award <br><br>w/c 07th December
+        </dd>
+        
+      </div>
+    
+  
+    
+      <div class="govuk-summary-list__row">
+        <dt class="govuk-summary-list__key">
+          8. Can you please clarify what you mean by subject matter specialist?
+        </dt>
+        <dd class="govuk-summary-list__value">
+          This is a subject matter expert / specialist who provides advice/expertise
+        </dd>
+        
+      </div>
+    
+  
+    
+      <div class="govuk-summary-list__row">
+        <dt class="govuk-summary-list__key">
+          9. Have experience of delivering performance analysis for digital services including use of A/B testing, Google Analytics and querying relational databases to gather data for analysis.&#34;<br> Is this question referring to A/B testing on apps /website from a digital experience POV?
+        </dt>
+        <dd class="govuk-summary-list__value">
+          Have experience of delivering performance analysis for digital services including use of A/B testing, Google Analytics and querying relational databases to gather data for analysis.&#34;<br> Is this question referring to A/B testing on apps /website from a digital experience POV?
+        </dd>
+        
+      </div>
+    
+  
+    
+      <div class="govuk-summary-list__row">
+        <dt class="govuk-summary-list__key">
+          10. What is the current technology stack? Which statistical tool is being used for analytics? E.g. R, Python, SAS or PySpark etc.? Does the existing solution use real-time analytics or batch process?
+        </dt>
+        <dd class="govuk-summary-list__value">
+          Currently batch processing, but moving towards stream processing infrastructure for increasingly real-time analytics. Analytics stack is mixed, including python/scala, PowerBI, Microstrategy, Google Analytics, Excel, and Arc/Q-GIS with data in on-premise Oracle Enterprise Data Warehouse and multi-cloud environments.
+        </dd>
+        
+      </div>
+    
+  
+    
+      <div class="govuk-summary-list__row">
+        <dt class="govuk-summary-list__key">
+          11. Which are the top 3 key pain areas of the existing analytics platform/process?
+        </dt>
+        <dd class="govuk-summary-list__value">
+          Data access &amp; integration, cross-business problem discovery, integration of analytics, reporting and visualisation into internal enterprise tools and production systems.
+        </dd>
+        
+      </div>
+    
+  
+    
+      <div class="govuk-summary-list__row">
+        <dt class="govuk-summary-list__key">
+          12. Have experience of delivering performance analysis for digital services including use of A/B testing, Google Analytics and querying relational databases to gather data for analysis.&#34;<br>Is this question referring to A/B testing on apps /website from a digital experience POV?
+        </dt>
+        <dd class="govuk-summary-list__value">
+          Yes, but also includes multivariate testing beyond user experience or design optimisation. For example, online validation of machine learning models.
+        </dd>
+        
+      </div>
+    
+  
+</dl>
+
+
+
+  </div>
+</div>
+
+
+
+
+
+        </main>
+      </div>
+    
+
+    
+  <footer class="govuk-footer " role="contentinfo">
+  <div class="govuk-width-container ">
+    
+      <div class="govuk-footer__navigation">
+        
+          <div class="govuk-footer__section">
+            <h2 class="govuk-footer__heading govuk-heading-m">About Digital Marketplace</h2>
+            
+              
+              <ul class="govuk-footer__list ">
+                
+                  
+                    <li class="govuk-footer__list-item">
+                      <a class="govuk-footer__link" href="/help">
+                        Contact
+                      </a>
+                    </li>
+                  
+                
+                  
+                    <li class="govuk-footer__list-item">
+                      <a class="govuk-footer__link" href="https://www.gov.uk/guidance/digital-marketplace-buyers-guide">
+                        Services you can buy
+                      </a>
+                    </li>
+                  
+                
+                  
+                    <li class="govuk-footer__list-item">
+                      <a class="govuk-footer__link" href="https://www.gov.uk/guidance/digital-marketplace-suppliers-guide">
+                        Services you can sell
+                      </a>
+                    </li>
+                  
+                
+                  
+                    <li class="govuk-footer__list-item">
+                      <a class="govuk-footer__link" href="https://www.gov.uk/government/organisations/crown-commercial-service">
+                        About Crown Commercial Services
+                      </a>
+                    </li>
+                  
+                
+                  
+                    <li class="govuk-footer__list-item">
+                      <a class="govuk-footer__link" href="https://www.gov.uk/government/organisations/government-digital-service">
+                        About Government Digital Services
+                      </a>
+                    </li>
+                  
+                
+                  
+                    <li class="govuk-footer__list-item">
+                      <a class="govuk-footer__link" href="/g-cloud/suppliers">
+                        G-Cloud supplier A to Z
+                      </a>
+                    </li>
+                  
+                
+              </ul>
+            
+          </div>
+        
+          <div class="govuk-footer__section">
+            <h2 class="govuk-footer__heading govuk-heading-m">Guidance for using Digital Marketplace</h2>
+            
+              
+              <ul class="govuk-footer__list ">
+                
+                  
+                    <li class="govuk-footer__list-item">
+                      <a class="govuk-footer__link" href="https://www.gov.uk/guidance/g-cloud-suppliers-guide">
+                        Applying to sell on the G-Cloud framework
+                      </a>
+                    </li>
+                  
+                
+                  
+                    <li class="govuk-footer__list-item">
+                      <a class="govuk-footer__link" href="https://www.gov.uk/guidance/digital-outcomes-and-specialists-suppliers-guide">
+                        Applying to sell on the DOS framework
+                      </a>
+                    </li>
+                  
+                
+                  
+                    <li class="govuk-footer__list-item">
+                      <a class="govuk-footer__link" href="https://www.gov.uk/guidance/how-to-sell-your-digital-outcomes-and-specialists-services">
+                        Responding to buyer requirements on the DOS framework
+                      </a>
+                    </li>
+                  
+                
+                  
+                    <li class="govuk-footer__list-item">
+                      <a class="govuk-footer__link" href="https://www.gov.uk/guidance/g-cloud-buyers-guide">
+                        Buying on the G-Cloud framework
+                      </a>
+                    </li>
+                  
+                
+                  
+                    <li class="govuk-footer__list-item">
+                      <a class="govuk-footer__link" href="https://www.gov.uk/guidance/digital-outcomes-and-specialists-buyers-guide">
+                        Buying on the DOS framework
+                      </a>
+                    </li>
+                  
+                
+                  
+                    <li class="govuk-footer__list-item">
+                      <a class="govuk-footer__link" href="https://www.gov.uk/guidance/the-crown-hosting-data-centres-framework-on-the-digital-marketplace">
+                        Buying on the Crown Hosting framework
+                      </a>
+                    </li>
+                  
+                
+              </ul>
+            
+          </div>
+        
+      </div>
+      <hr class="govuk-footer__section-break">
+    
+    <div class="govuk-footer__meta">
+      <div class="govuk-footer__meta-item govuk-footer__meta-item--grow">
+        
+          <h2 class="govuk-visually-hidden">Support links</h2>
+          
+            <ul class="govuk-footer__inline-list">
+              
+                <li class="govuk-footer__inline-list-item">
+                  <a class="govuk-footer__link" href="/terms-and-conditions">
+                    Terms and conditions
+                  </a>
+                </li>
+              
+                <li class="govuk-footer__inline-list-item">
+                  <a class="govuk-footer__link" href="/cookies">
+                    Cookies
+                  </a>
+                </li>
+              
+                <li class="govuk-footer__inline-list-item">
+                  <a class="govuk-footer__link" href="/privacy-notice">
+                    Privacy notice
+                  </a>
+                </li>
+              
+                <li class="govuk-footer__inline-list-item">
+                  <a class="govuk-footer__link" href="/accessibility-statement">
+                    Accessibility statement
+                  </a>
+                </li>
+              
+            </ul>
+          
+          
+            <div class="govuk-footer__meta-custom">
+              Built by the <a href="https://www.gov.uk/government/organisations/government-digital-service" class="govuk-footer__link">Government Digital Service</a>
+            </div>
+          
+        
+        <svg
+          aria-hidden="true"
+          focusable="false"
+          class="govuk-footer__licence-logo"
+          xmlns="http://www.w3.org/2000/svg"
+          viewBox="0 0 483.2 195.7"
+          height="17"
+          width="41"
+        >
+          <path
+            fill="currentColor"
+            d="M421.5 142.8V.1l-50.7 32.3v161.1h112.4v-50.7zm-122.3-9.6A47.12 47.12 0 0 1 221 97.8c0-26 21.1-47.1 47.1-47.1 16.7 0 31.4 8.7 39.7 21.8l42.7-27.2A97.63 97.63 0 0 0 268.1 0c-36.5 0-68.3 20.1-85.1 49.7A98 98 0 0 0 97.8 0C43.9 0 0 43.9 0 97.8s43.9 97.8 97.8 97.8c36.5 0 68.3-20.1 85.1-49.7a97.76 97.76 0 0 0 149.6 25.4l19.4 22.2h3v-87.8h-80l24.3 27.5zM97.8 145c-26 0-47.1-21.1-47.1-47.1s21.1-47.1 47.1-47.1 47.2 21 47.2 47S123.8 145 97.8 145"
+          />
+        </svg>
+        <span class="govuk-footer__licence-description">
+          All content is available under the
+          <a
+            class="govuk-footer__link"
+            href="https://www.nationalarchives.gov.uk/doc/open-government-licence/version/3/"
+            rel="license"
+          >Open Government Licence v3.0</a>, except where otherwise stated
+        </span>
+      </div>
+      <div class="govuk-footer__meta-item">
+        <a
+          class="govuk-footer__link govuk-footer__copyright-logo"
+          href="https://www.nationalarchives.gov.uk/information-management/re-using-public-sector-information/uk-government-licensing-framework/crown-copyright/"
+        >© Crown copyright</a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+
+    
+  <script src="/static/javascripts/application.js?203cfb0e551014db17a990afd7ef6fee"></script>
+  
+
+  </body>
+</html>
