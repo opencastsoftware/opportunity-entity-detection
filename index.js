@@ -10,6 +10,7 @@ function getEssentialSkills(url) {
     return new Promise((resolve) => {
         osmosis
             .get(url)
+            .log(console.log)
             .find('//*[@id="main-content"]/div/div/dl[6]/div[1]/dd/ul')
             .set('text')
             .data(data => {
@@ -68,7 +69,7 @@ const testEvent = {
                 "ApproximateFirstReceiveTimestamp": "1523232000001"
             },
             "messageAttributes": {
-                "Link": "https://www.digitalmarketplace.service.gov.uk/digital-outcomes-and-specialists/opportunities/13092"
+                "Link": "https://www.digitalmarketplace.service.gov.uk/digital-outcomes-and-specialists/opportunities/13237"
             },
             "md5OfBody": "{{{md5_of_body}}}",
             "eventSource": "aws:sqs",
@@ -78,7 +79,7 @@ const testEvent = {
     ]
 }
 
-//handler(testEvent);
+handler(testEvent);
 
 module.exports = {
     getEssentialSkills,
