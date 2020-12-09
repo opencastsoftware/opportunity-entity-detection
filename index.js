@@ -34,22 +34,45 @@ async function getEntities(text) {
         Text: text,
         LanguageCode: en
     }
-    comprehend.detectEntities(params).promise();
+    return comprehend.detectEntities(params).promise();
 }
 
 const handler = async (event) => {
-    const promises = [];
     event.Records.forEach(async (record) => {
         const url = record.messageAttributes.Link;
         console.log(url);
         const eSkills = await getEssentialSkills(url);
+        console.log(eSkills);
+        const entities = await getEntities(eSkills);
+        console.log(entities);
     });
-    console.log("about to settle the promises");
-    Promise.allSettled(promises).then((results) =>
-        results.forEach((result) => console.log("RES", result))
-    );
     return {};
 }
+
+const testEvent = {
+    "Records": [
+        {
+            "messageId": "19dd0b57-b21e-4ac1-bd88-01bbb068cb78",
+            "receiptHandle": "MessageReceiptHandle",
+            "body": "Hello from SQS!",
+            "attributes": {
+                "ApproximateReceiveCount": "1",
+                "SentTimestamp": "1523232000000",
+                "SenderId": "123456789012",
+                "ApproximateFirstReceiveTimestamp": "1523232000001"
+            },
+            "messageAttributes": {
+                "Link": "https://www.digitalmarketplace.service.gov.uk/digital-outcomes-and-specialists/opportunities/13092"
+            },
+            "md5OfBody": "{{{md5_of_body}}}",
+            "eventSource": "aws:sqs",
+            "eventSourceARN": "arn:aws:sqs:eu-west-2:123456789012:MyQueue",
+            "awsRegion": "eu-west-2"
+        }
+    ]
+}
+
+handler(testEvent);
 
 module.exports = {
     getEssentialSkills,
