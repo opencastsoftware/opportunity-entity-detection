@@ -12,6 +12,7 @@ function getEssentialSkills(url) {
             .find('//*[@id="main-content"]/div/div/dl[6]/div[1]/dd/ul')
             .set('text')
             .data(data => text = data)
+            .error((err) => console.log(err))
             .done(() => resolve(text));
     });
 }
@@ -42,9 +43,6 @@ const handler = async (event) => {
         const url = record.messageAttributes.Link;
         console.log(url);
         const eSkills = await getEssentialSkills(url);
-        console.log("ESKILLS: " + eSkills);
-        promises.push(getNiceToHaveSkills(url).promise());
-        promises.push(getEssentialSkills(url).promise());
     });
     console.log("about to settle the promises");
     Promise.allSettled(promises).then((results) =>
