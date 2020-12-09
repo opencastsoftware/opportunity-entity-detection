@@ -38,7 +38,7 @@ async function getEntities(text) {
 
 const handler = async (event) => {
     event.Records.forEach(async record => {
-        const url = record.MessageAttributes.Link;
+        const url = record.messageAttributes.Link;
         console.log(url);
         const eSkills = await getEssentialSkills(url);
         const nthSkills = await getNiceToHaveSkills(url);
