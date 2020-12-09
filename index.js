@@ -41,8 +41,9 @@ const handler = async (event) => {
         const url = record.messageAttributes.Link;
         console.log(url);
         const eSkills = await getEssentialSkills(url);
+        console.log("ESKILLS: " + eSkills);
         const nthSkills = await getNiceToHaveSkills(url);
-        const eSkillsEntities = await getEntities(eskills);
+        const eSkillsEntities = await getEntities(eSkills);
         console.log(eSkillsEntities)
     });
     return {};
