@@ -1,12 +1,16 @@
-const { get } = require("osmosis");
 const osmosis = require("osmosis");
 const AWS = require("aws-sdk");
+const fetch = require('node-fetch');
 AWS.config.update({ region: "eu-west-2" });
 const comprehend = new AWS.Comprehend({ apiVersion: '2017-11-27' });
 
 function getEssentialSkills(url) {
     console.log("getting skills for: " + url);
     let text;
+
+    const result = await fetch(url);
+    console.log(await result.text());
+
     return new Promise((resolve) => {
         osmosis
             .get(url)
