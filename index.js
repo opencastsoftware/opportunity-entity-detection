@@ -5,6 +5,7 @@ AWS.config.update({ region: "eu-west-2" });
 const comprehend = new AWS.Comprehend({ apiVersion: '2017-11-27' });
 
 function getEssentialSkills(url) {
+    console.log("getting skills for: " + url);
     let text;
     return new Promise((resolve) => {
         osmosis
@@ -12,8 +13,10 @@ function getEssentialSkills(url) {
             .find('//*[@id="main-content"]/div/div/dl[6]/div[1]/dd/ul')
             .set('text')
             .data(data => text = data)
+            .debug(console.log)
             .error((err) => console.log(err))
             .done(() => resolve(text));
+
     });
 }
 
@@ -32,7 +35,7 @@ function getNiceToHaveSkills(url) {
 async function getEntities(text) {
     const params = {
         Text: text,
-        LanguageCode: en
+        LanguageCode: 'en'
     }
     return comprehend.detectEntities(params).promise();
 }
@@ -43,7 +46,7 @@ const handler = async (event) => {
         console.log(url);
         const eSkills = await getEssentialSkills(url);
         console.log(eSkills);
-        const entities = await getEntities(eSkills);
+        const entities = await getEntities(eSkills.text);
         console.log(entities);
     });
     return {};
@@ -72,7 +75,7 @@ const testEvent = {
     ]
 }
 
-//handler(testEvent);
+handler(testEvent);
 
 module.exports = {
     getEssentialSkills,
