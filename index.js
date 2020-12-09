@@ -1,7 +1,8 @@
 const { get } = require("osmosis");
 const osmosis = require("osmosis");
-//const AWS = require("aws-sdk");
-//AWS.config.update({ region: "eu-west-2" });
+const AWS = require("aws-sdk");
+AWS.config.update({ region: "eu-west-2" });
+const comprehend = new AWS.Comprehend({ apiVersion: '2017-11-27' });
 
 function getEssentialSkills(url) {
     let text;
@@ -26,11 +27,22 @@ function getNiceToHaveSkills(url) {
             .done(() => resolve(text));
     });
 }
-handler = async function (event, context) {
-    event.Records.forEach(record => {
+
+async function getEntities(text) {
+    const params = {
+        Text: text,
+        LanguageCode: en
+    }
+    comprehend.detectEntities(params).promise();
+}
+
+const handler = async (event) => {
+    event.Records.forEach(async record => {
         const url = record.MessageAttributes.Link;
         const eSkills = await getEssentialSkills(url);
         const nthSkills = await getNiceToHaveSkills(url);
+        const eSkillsEntities = await getEntities(eskills);
+        console.log(eSkillsEntities)
     });
     return {};
 }

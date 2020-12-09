@@ -47,7 +47,6 @@ describe("get opportunity nice-to-have skill", () => {
 
     it("should return the nice-to-have skills text", async () => {
         const skillsText = await entityDetection.getNiceToHaveSkills(url);
-        console.log(skillsText);
         expect(skillsText.text).toEqual('Experience of evaluating the impact of service delivery, including approaches set out in the Magenta Book (https://www.gov.uk/government/publications/the-magenta-book);\n' +
             '          Experience creating using and interpreting data specifications and standards;\n' +
             '          Experience identifying interactions and interdependencies across data sets to enable integration of data to support new services;\n' +
