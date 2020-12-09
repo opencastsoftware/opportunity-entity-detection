@@ -12,7 +12,10 @@ function getEssentialSkills(url) {
             .get(url)
             .find('//*[@id="main-content"]/div/div/dl[6]/div[1]/dd/ul')
             .set('text')
-            .data(data => text = data)
+            .data(data => {
+                text = data;
+                console.log(data);
+            })
             .debug(console.log)
             .error((err) => console.log(err))
             .done(() => resolve(text));
