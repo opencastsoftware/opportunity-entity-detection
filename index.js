@@ -37,15 +37,18 @@ async function getEntities(text) {
 }
 
 const handler = async (event) => {
-    event.Records.forEach(async record => {
+    const promises = [];
+    event.Records.forEach(async (record) => {
         const url = record.messageAttributes.Link;
         console.log(url);
         const eSkills = await getEssentialSkills(url);
         console.log("ESKILLS: " + eSkills);
-        const nthSkills = await getNiceToHaveSkills(url);
-        const eSkillsEntities = await getEntities(eSkills);
-        console.log(eSkillsEntities)
+        promises.push(getNiceToHaveSkills(url).promise());
+        promises.push(getEssentialSkills(url).promise());
     });
+    Promise.allSettled(promises).then((results) =>
+        results.forEach((result) => console.log("RES", result))
+    );
     return {};
 }
 
