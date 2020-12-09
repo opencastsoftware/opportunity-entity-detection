@@ -50,5 +50,6 @@ const handler = async (event) => {
 
 module.exports = {
     getEssentialSkills,
-    getNiceToHaveSkills
+    getNiceToHaveSkills,
+    handler
 }
