@@ -46,6 +46,7 @@ const handler = async (event) => {
         promises.push(getNiceToHaveSkills(url).promise());
         promises.push(getEssentialSkills(url).promise());
     });
+    console.log("about to settle the promises");
     Promise.allSettled(promises).then((results) =>
         results.forEach((result) => console.log("RES", result))
     );
