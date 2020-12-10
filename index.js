@@ -9,24 +9,18 @@ function getEssentialSkills(url) {
     let text;
 
     return new Promise((resolve) => {
-        fetch(url).then(r => {
-            r.text().then(t => console.log(t.length));
-
-
-            osmosis
-                .get(url)
-                .log(console.log)
-                .find('//*[@id="main-content"]/div/div/dl[6]/div[1]/dd/ul')
-                .set('text')
-                .data(data => {
-                    text = data;
-                    console.log(data);
-                })
-                .debug(console.log)
-                .error((err) => console.log(err))
-                .done(() => resolve(text));
-        });
-
+        osmosis
+            .get(url)
+            .log(console.log)
+            .find('//*[@id="main-content"]/div/div/dl[6]/div[1]/dd/ul')
+            .set('text')
+            .data(data => {
+                text = data;
+                console.log(data);
+            })
+            .debug(console.log)
+            .error((err) => console.log(err))
+            .done(() => resolve(text));
     });
 }
 
@@ -51,15 +45,23 @@ async function getEntities(text) {
 }
 
 const handler = async (event) => {
+
+    const promises = []
+
     event.Records.forEach(async (record) => {
         const url = record.messageAttributes.Link;
         console.log(url);
-        const eSkills = await getEssentialSkills(url);
-        console.log(eSkills);
-        const entities = await getEntities(eSkills.text);
-        console.log(entities);
+
+        promises.push(new Promise(async (resolve) => {
+            const eSkills = await getEssentialSkills(url);
+            console.log(eSkills);
+            const entities = await getEntities(eSkills.text);
+            console.log(entities);
+            resolve();
+        }))
     });
-    return {};
+
+    return Promise.all(promises);
 }
 
 const testEvent = {
@@ -85,7 +87,7 @@ const testEvent = {
     ]
 }
 
-//handler(testEvent);
+handler(testEvent);
 
 module.exports = {
     getEssentialSkills,
