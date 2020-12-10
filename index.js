@@ -87,7 +87,7 @@ const testEvent = {
     ]
 }
 
-handler(testEvent);
+// handler(testEvent);
 
 module.exports = {
     getEssentialSkills,
