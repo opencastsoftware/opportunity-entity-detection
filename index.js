@@ -6,6 +6,8 @@ const fetch = require('node-fetch');
 AWS.config.update({ region: "eu-west-2" });
 const comprehend = new AWS.Comprehend({ apiVersion: '2017-11-27' });
 
+const baseUrl = 'https://www.digitalmarketplace.service.gov.uk';
+
 // const traversal = gremlin.process.AnonymousTraversalSource.traversal;
 // const DriverRemoteConnection = gremlin.driver.DriverRemoteConnection;
 // const g = traversal().withRemote(new DriverRemoteConnection('ws://localhost:8182/gremlin'));
@@ -54,7 +56,7 @@ async function getEntities(text) {
 const handler = async (event) => {
     const promises = []
     event.Records.forEach(async (record) => {
-        const url = record.messageAttributes.Link.stringValue;
+        const url = baseUrl + record.messageAttributes.Link.stringValue;
         console.log(url);
 
         promises.push(new Promise(async (resolve) => {

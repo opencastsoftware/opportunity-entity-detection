@@ -74,7 +74,7 @@ describe('handler', ()=>{
                     body: 'User Centred Design Partner',
                     messageAttributes:{
                         Link:{
-                            stringValue: 'https://www.digitalmarketplace.service.gov.uk/some/url'
+                            stringValue: '/some/url'
                         }
                     }
                 },
@@ -96,6 +96,6 @@ describe('handler', ()=>{
 
         await entityDetection.handler(event);
         // await entityDetection.getEssentialSkills('e');
-        expect(getEssentialSkillsSpy).toHaveBeenCalledWith('/some/url');
+        expect(getEssentialSkillsSpy).toHaveBeenCalledWith('https://www.digitalmarketplace.service.gov.uk/some/url');
     })
 })
