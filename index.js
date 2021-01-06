@@ -64,7 +64,7 @@ const handler = async (event) => {
             const eSkills = await getEssentialSkills(url);
             console.log("eSkills:", eSkills);
             console.log('calling get entities for eskills:', eSkills.text);
-            const entities = await getEntities(eSkills.text);
+            const { Entities: entities } = await getEntities(eSkills.text);
             console.log("entities:", entities);
 
             // only interested in TITLE entities
