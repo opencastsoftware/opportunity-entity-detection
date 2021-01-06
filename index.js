@@ -66,8 +66,14 @@ const handler = async (event) => {
             console.log('calling get entities for eskills:', eSkills.text);
             const entities = await getEntities(eSkills.text);
             console.log("entities:", entities);
+
+            // only interested in TITLE entities
+            const keyEntities = entities.filter(entity => entity.Type === 'TITLE');
+            console.log(keyEntities);
             resolve();
         }))
+
+        
     });
 
     return Promise.all(promises);
