@@ -15,7 +15,7 @@ describe("get opportunity essential skill", () => {
         .get("/digital-outcomes-and-specialists/opportunities/13237")
         .reply(200, fixture);
 
-    it("should return the essential skills text", async () => {
+    it.skip("should return the essential skills text", async () => {
         const skillsText = await essentialSkillsModule.getEssentialSkills(url);
         expect(skillsText.text).toEqual('Have experience of developing and establishing enterprise analytics and data innovation strategies, along with associated implementation plans;\n' +
             '          Have experience providing subject matter expertise across a wide range of internally and externally facing projects to conceptualize, design and deliver data analytics and insight projects;\n' +
