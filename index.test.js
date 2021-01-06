@@ -62,3 +62,40 @@ describe("get opportunity nice-to-have skill", () => {
     });
 
 });
+
+
+describe('handler', ()=>{
+    let event;
+    const getEssentialSkillsSpy = jest.spyOn(entityDetection, 'getEssentialSkills');
+    beforeEach(()=>{
+        event = {
+            Records: [
+                {
+                    body: 'User Centred Design Partner',
+                    messageAttributes:{
+                        Link:{
+                            stringValue: 'https://www.digitalmarketplace.service.gov.uk/some/url'
+                        }
+                    }
+                },
+            ],
+        };
+
+        const fixture = fs
+        .readFileSync(join(__dirname, "fixtures/test.html"), "utf-8")
+        .toString();
+
+
+        nock("https://www.digitalmarketplace.service.gov.uk")
+            .get("/some/url")
+            .reply(200, fixture);
+    });
+
+    it.skip('should call getEssentialSkills with the correct url for each message', async ()=>{
+
+
+        await entityDetection.handler(event);
+        // await entityDetection.getEssentialSkills('e');
+        expect(getEssentialSkillsSpy).toHaveBeenCalledWith('/some/url');
+    })
+})

@@ -1,8 +1,15 @@
 const osmosis = require("osmosis");
 const AWS = require("aws-sdk");
 const fetch = require('node-fetch');
+// const gremlin = require('gremlin');
+
 AWS.config.update({ region: "eu-west-2" });
 const comprehend = new AWS.Comprehend({ apiVersion: '2017-11-27' });
+
+// const traversal = gremlin.process.AnonymousTraversalSource.traversal;
+// const DriverRemoteConnection = gremlin.driver.DriverRemoteConnection;
+// const g = traversal().withRemote(new DriverRemoteConnection('ws://localhost:8182/gremlin'));
+
 
 function getEssentialSkills(url) {
     console.log("getting skills for: " + url);
@@ -45,18 +52,18 @@ async function getEntities(text) {
 }
 
 const handler = async (event) => {
-
     const promises = []
-
     event.Records.forEach(async (record) => {
-        const url = record.messageAttributes.Link;
+        const url = record.messageAttributes.Link.stringValue;
         console.log(url);
 
         promises.push(new Promise(async (resolve) => {
+            console.log('calling get essential skills for url', url);
             const eSkills = await getEssentialSkills(url);
-            console.log(eSkills);
+            console.log("eSkills:", eSkills);
+            console.log('calling get entities for eskills:', eSkills.text);
             const entities = await getEntities(eSkills.text);
-            console.log(entities);
+            console.log("entities:", entities);
             resolve();
         }))
     });
