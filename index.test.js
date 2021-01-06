@@ -7,11 +7,14 @@ const niceSkillsModule = require('./helpers/getNiceToHaveSkills');
 const entityModule = require('./helpers/getEntities');
 const entityDetection = require("./index")
 
-
-
 // const essentialSkillSpy = jest.spyOn(essentialSkillsModule, 'getEssentialSkills');
 const niceSkillSpy = jest.spyOn(niceSkillsModule, 'getNiceToHaveSkills');
 const entitySpy = jest.spyOn(entityModule, 'getEntities');
+
+beforeAll(()=>{
+    jest.resetModules();
+})
+
 
 jest.mock('./helpers/getEssentialSkills', ()=>{
     return{
@@ -23,6 +26,7 @@ describe('handler', ()=>{
     let event;
     beforeEach(()=>{
         niceSkillSpy.mockClear();
+        entitySpy.mockClear();
         event = {
             Records: [
                 {
