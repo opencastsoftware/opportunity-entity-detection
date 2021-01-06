@@ -1,4 +1,9 @@
 // const gremlin = require('gremlin');
+const AWS = require("aws-sdk");
+
+AWS.config.update({ region: "eu-west-2" });
+const comprehend = new AWS.Comprehend({ apiVersion: '2017-11-27' });
+
 const essentialSkillsModule  = require('./helpers/getEssentialSkills');
 const niceToHaveSkillsModule  = require('./helpers/getNiceToHaveSkills');
 const entitiesModule = require('./helpers/getEntities');
