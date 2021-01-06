@@ -54,29 +54,45 @@ async function getEntities(text) {
 }
 
 const handler = async (event) => {
-    const promises = []
-    event.Records.forEach(async (record) => {
+    // const promises = []
+    // event.Records.forEach(async (record) => {
+    //     const url = baseUrl + record.messageAttributes.Link.stringValue;
+    //     console.log(url);
+
+    //     promises.push(new Promise(async (resolve) => {
+    //         console.log('calling get essential skills for url', url);
+    //         const eSkills = await getEssentialSkills(url);
+    //         console.log("eSkills:", eSkills);
+    //         console.log('calling get entities for eskills:', eSkills.text);
+    //         const { Entities: entities } = await getEntities(eSkills.text);
+    //         console.log("entities:", entities);
+
+    //         // only interested in TITLE entities
+    //         const keyEntities = entities.filter(entity => entity.Type === 'TITLE');
+    //         console.log(keyEntities);
+    //         resolve();
+    //     }))
+
+        
+    // });
+
+    // return Promise.all(promises);
+    await Promise.all(event.Records.map(async (record) => {
         const url = baseUrl + record.messageAttributes.Link.stringValue;
         console.log(url);
 
-        promises.push(new Promise(async (resolve) => {
-            console.log('calling get essential skills for url', url);
-            const eSkills = await getEssentialSkills(url);
-            console.log("eSkills:", eSkills);
-            console.log('calling get entities for eskills:', eSkills.text);
-            const { Entities: entities } = await getEntities(eSkills.text);
-            console.log("entities:", entities);
+        console.log('calling get essential skills for url', url);
+        const eSkills = await getEssentialSkills(url);
+        console.log("eSkills:", eSkills);
+        console.log('calling get entities for eskills:', eSkills.text);
+        const { Entities: entities } = await getEntities(eSkills.text);
+        console.log("entities:", entities);
 
-            // only interested in TITLE entities
-            const keyEntities = entities.filter(entity => entity.Type === 'TITLE');
-            console.log(keyEntities);
-            resolve();
-        }))
+        // only interested in TITLE entities
+        const keyEntities = entities.filter(entity => entity.Type === 'TITLE');
+        console.log('keyEntities = ', keyEntities);  
+    }));
 
-        
-    });
-
-    return Promise.all(promises);
 }
 
 const testEvent = {
