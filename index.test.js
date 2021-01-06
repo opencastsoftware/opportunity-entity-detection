@@ -11,7 +11,14 @@ const essentialSkillSpy = jest.spyOn(essentialSkillsModule, 'getEssentialSkills'
 const niceSkillSpy = jest.spyOn(niceSkillsModule, 'getNiceToHaveSkills');
 const entitySpy = jest.spyOn(entityModule, 'getEntities');
 
+
+
 describe('handler', ()=>{
+    jest.mock('./helpers/getEntities', ()=>{
+        return{
+            getEntities: jest.fn()
+        }
+    });
     let event;
     beforeEach(()=>{
         niceSkillSpy.mockClear();
