@@ -4,10 +4,6 @@ const nock = require("nock");
 
 const essentialSkillsModule = require('../getEssentialSkills');
 
-beforeAll(()=>{
-    jest.resetModules();
-})
-
 describe("get opportunity essential skill", () => {
     const fixture = fs
     .readFileSync(join(__dirname, "../../fixtures/test.html"), "utf-8")
