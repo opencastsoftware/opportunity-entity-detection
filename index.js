@@ -84,6 +84,7 @@ const handler = async (event) => {
         console.log('calling get essential skills for url', url);
         const eSkills = await getEssentialSkills(url);
         console.log("eSkills:", eSkills);
+
         console.log('calling get entities for eskills:', eSkills.text);
         const { Entities: entities } = await getEntities(eSkills.text);
         console.log("entities:", entities);
@@ -91,7 +92,15 @@ const handler = async (event) => {
         // only interested in TITLE entities
         const keyEntities = entities.filter(entity => entity.Type === 'TITLE');
         console.log('keyEntities = ', keyEntities);  
+        if(keyEntities.length){
+            console.log('adding vertex to graphdb using gremlin');
+        }
     }));
+
+    return {
+        statusCode: 201,
+        body: JSON.stringify("Proccessed the new opportunities!"),
+      };
 
 }
 
