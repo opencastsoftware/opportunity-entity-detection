@@ -1,6 +1,9 @@
 const fs = require("fs");
 const { join } = require("path");
 const nock = require("nock");
+const AWS = require("aws-sdk");
+
+AWS.config.update({ region: "eu-west-2" });
 
 const essentialSkillsModule = require('./helpers/getEssentialSkills');
 const niceSkillsModule = require('./helpers/getNiceToHaveSkills');
