@@ -7,20 +7,9 @@ const niceSkillsModule = require('./helpers/getNiceToHaveSkills');
 const entityModule = require('./helpers/getEntities');
 const entityDetection = require("./index")
 
-// const essentialSkillSpy = jest.spyOn(essentialSkillsModule, 'getEssentialSkills');
+const essentialSkillSpy = jest.spyOn(essentialSkillsModule, 'getEssentialSkills');
 const niceSkillSpy = jest.spyOn(niceSkillsModule, 'getNiceToHaveSkills');
 const entitySpy = jest.spyOn(entityModule, 'getEntities');
-
-beforeAll(()=>{
-    jest.resetModules();
-})
-
-
-jest.mock('./helpers/getEssentialSkills', ()=>{
-    return{
-        getEssentialSkills: jest.fn().mockReturnValue({text:'found essential skills'})
-    }
-});
 
 describe('handler', ()=>{
     let event;
@@ -52,7 +41,7 @@ describe('handler', ()=>{
 
     it('should call getEssentialSkills with the correct url for each message', async ()=>{ 
         const result = await entityDetection.handler(event);
-        expect(essentialSkillsModule.getEssentialSkills).toHaveBeenCalledWith('https://www.digitalmarketplace.service.gov.uk/some/url');
+        expect(essentialSkillSpy).toHaveBeenCalledWith('https://www.digitalmarketplace.service.gov.uk/some/url');
         expect(result).toEqual({"body": "\"Proccessed the new opportunities!\"", "statusCode": 201});
     })
 
@@ -64,8 +53,20 @@ describe('handler', ()=>{
 
 
     it('should call getEntities with the correct url for each message', async ()=>{ 
+
         const result = await entityDetection.handler(event);
-        expect(entitySpy).toHaveBeenCalledWith('found essential skills');
+        expect(entitySpy).toHaveBeenCalledWith('Have experience of developing and establishing enterprise analytics and data innovation strategies, along with associated implementation plans;\n' +
+        '          Have experience providing subject matter expertise across a wide range of internally and externally facing projects to conceptualize, design and deliver data analytics and insight projects;\n' +
+        '          Demonstrable experience supporting agile delivery team’s application of data science, statistical analysis and geospatial mapping whilst seamlessly integrating into client teams;\n' +
+        '          Experience of eliciting analytical requirements from a range of stakeholders, understand user needs and communicating technical/data principles, tools, techniques and requirements between non-technical business audiences and technical specialists;\n' +
+        '          Practical experience identifying business problems and datasets suitable for data science and the development of new products/services, as well as prioritising, planning and executing Research & Development activities;\n' +
+        '          Experience designing and deliver engaging data stories using effective data visualisation supporting analysis communication. Demonstrate a range of techniques, including dashboarding, in open source and enterprise reporting tools (e.g. PowerBI);\n' +
+        '          Have experience of delivering performance analysis for digital services including use of A/B testing, Google Analytics and querying relational databases to gather data for analysis;\n' +
+        '          Evidence of ability to discover and assess data for development of new products/services, including objective determination of data quality/‘fit for purpose’, understanding caveats and limitations, relationships and linkages;\n' +
+        '          Delivery of geospatial analysis, visualisation and services to support digital transformation programmes (using tools like ArcGIS Enterprise / Pro / FME / QGIS);\n' +
+        '          Demonstrable practical experience in delivering high value end-to-end data science projects in production environments, using modern architectures, cloud compute platforms and both open source and enterprise tools;\n' +
+        '          Significant practical experience in leading edge data science and machine learning techniques applied at scale, particularly in the fields of NLP, geospatial, computer vision and knowledge graphs/mining;\n' +
+        '          Practical experience of operating and maintaining end-to-end platforms for robust, low latency production data science, with associated monitoring, assurance and governance.');
         expect(result).toEqual({"body": "\"Proccessed the new opportunities!\"", "statusCode": 201});
     })
 });
@@ -81,7 +82,7 @@ describe("get opportunity essential skill", () => {
         .get("/digital-outcomes-and-specialists/opportunities/13237")
         .reply(200, fixture);
 
-    it.skip("should return the essential skills text", async () => {
+    it("should return the essential skills text", async () => {
         const skillsText = await essentialSkillsModule.getEssentialSkills(url);
         expect(skillsText.text).toEqual('Have experience of developing and establishing enterprise analytics and data innovation strategies, along with associated implementation plans;\n' +
             '          Have experience providing subject matter expertise across a wide range of internally and externally facing projects to conceptualize, design and deliver data analytics and insight projects;\n' +
@@ -100,7 +101,7 @@ describe("get opportunity essential skill", () => {
 
 describe("get opportunity nice-to-have skill", () => {
     const fixture = fs
-    .readFileSync(join(__dirname, "../../fixtures/test.html"), "utf-8")
+    .readFileSync(join(__dirname, "fixtures/test.html"), "utf-8")
     .toString();
 
     const url = "https://www.digitalmarketplace.service.gov.uk/digital-outcomes-and-specialists/opportunities/13237"
@@ -110,7 +111,7 @@ describe("get opportunity nice-to-have skill", () => {
         .get("/digital-outcomes-and-specialists/opportunities/13237")
         .reply(200, fixture);
 
-    it.skip("should return the nice-to-have skills text", async () => {
+    it("should return the nice-to-have skills text", async () => {
     const skillsText = await niceSkillsModule.getNiceToHaveSkills(url);
     expect(skillsText.text).toEqual('Experience of evaluating the impact of service delivery, including approaches set out in the Magenta Book (https://www.gov.uk/government/publications/the-magenta-book);\n' +
         '          Experience creating using and interpreting data specifications and standards;\n' +
@@ -125,5 +126,3 @@ describe("get opportunity nice-to-have skill", () => {
         '          Practical analytics/data engineering with (or Accredited training in):   ArcGIS/QGIS,   Python (scientific/geospatial/ML stacks) and/or Scala,   Distributed compute (Dask/Spark),   Deep Learning frameworks (Tensorflow, PyTorch etc.),   Graph databases,   Linked open data (RDF, SPARQL).');
     });
 });
-
-
