@@ -4,18 +4,19 @@ const nock = require("nock");
 
 const niceSkillsModule = require('../getNiceToHaveSkills');
 
+const fixture = fs
+    .readFileSync(join(__dirname, "../../fixtures/test.html"), "utf-8")
+    .toString();
+
+const url = "https://www.digitalmarketplace.service.gov.uk/digital-outcomes-and-specialists/opportunities/13237"
+
+nock("https://www.digitalmarketplace.service.gov.uk")
+    .persist()
+    .get("/digital-outcomes-and-specialists/opportunities/13237")
+    .reply(200, fixture);
+
+
 describe("get opportunity nice-to-have skill", () => {
-    const fixture = fs
-        .readFileSync(join(__dirname, "../../fixtures/test.html"), "utf-8")
-        .toString();
-
-    const url = "https://www.digitalmarketplace.service.gov.uk/digital-outcomes-and-specialists/opportunities/13237"
-
-    nock("https://www.digitalmarketplace.service.gov.uk")
-        .persist()
-        .get("/digital-outcomes-and-specialists/opportunities/13237")
-        .reply(200, fixture);
-
     it("should return the nice-to-have skills text", async () => {
         const skillsText = await niceSkillsModule.getNiceToHaveSkills(url);
         expect(skillsText.text).toEqual('Experience of evaluating the impact of service delivery, including approaches set out in the Magenta Book (https://www.gov.uk/government/publications/the-magenta-book);\n' +
@@ -30,5 +31,4 @@ describe("get opportunity nice-to-have skill", () => {
             '          Experience building services to Government ethics guidance, data security best practice and using privacy preserving methodologies in analytics;\n' +
             '          Practical analytics/data engineering with (or Accredited training in):   ArcGIS/QGIS,   Python (scientific/geospatial/ML stacks) and/or Scala,   Distributed compute (Dask/Spark),   Deep Learning frameworks (Tensorflow, PyTorch etc.),   Graph databases,   Linked open data (RDF, SPARQL).');
     });
-
 });

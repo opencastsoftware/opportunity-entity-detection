@@ -4,17 +4,17 @@ const nock = require("nock");
 
 const essentialSkillsModule = require('../getEssentialSkills');
 
+const fixture = fs
+    .readFileSync(join(__dirname, "../../fixtures/test.html"), "utf-8")
+    .toString();
+
+const url = "https://www.digitalmarketplace.service.gov.uk/digital-outcomes-and-specialists/opportunities/13237"
+
+nock("https://www.digitalmarketplace.service.gov.uk")
+    .get("/digital-outcomes-and-specialists/opportunities/13237")
+    .reply(200, fixture);
+
 describe("get opportunity essential skill", () => {
-    const fixture = fs
-        .readFileSync(join(__dirname, "../../fixtures/test.html"), "utf-8")
-        .toString();
-
-    const url = "https://www.digitalmarketplace.service.gov.uk/digital-outcomes-and-specialists/opportunities/13237"
-
-    nock("https://www.digitalmarketplace.service.gov.uk")
-        .get("/digital-outcomes-and-specialists/opportunities/13237")
-        .reply(200, fixture);
-
     it("should return the essential skills text", async () => {
         const skillsText = await essentialSkillsModule.getEssentialSkills(url);
         expect(skillsText.text).toEqual('Have experience of developing and establishing enterprise analytics and data innovation strategies, along with associated implementation plans;\n' +
