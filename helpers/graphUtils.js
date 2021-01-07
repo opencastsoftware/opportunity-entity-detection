@@ -36,6 +36,18 @@ async function createOpportunity(opp){
 
 }
 
+async function getLocations(){
+    return g.V().hasLabel('location').values('name').toList();
+}
+
+async function getOrganisations(){
+    return g.V().hasLabel('organisation').values('name').toList();
+}
+
+async function getOpportunities(){
+    return g.V().hasLabel('opportunity').valueMap().toList();
+}
+
 function createRemoteConnection() {
     return new DriverRemoteConnection(
         connectionString(), 
@@ -57,5 +69,8 @@ function connectionString() {
 module.exports = {
     createOrganisation,
     createLocation,
-    createOpportunity
+    createOpportunity,
+    getLocations,
+    getOpportunities,
+    getOrganisations
 }

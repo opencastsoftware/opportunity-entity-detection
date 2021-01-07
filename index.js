@@ -64,6 +64,14 @@ const handler = async (event) => {
 
     }));
 
+    const organisations = await graphUtils.getOrganisations();
+    console.log('organisations', organisations);
+    const locations = await graphUtils.getLocations();
+    console.log('locations', locations);
+    const opportunities = await graphUtils.getOpportunities();
+    console.log('opportunities', opportunities);
+
+
     return {
         statusCode: 201,
         body: JSON.stringify("Proccessed the new opportunities!"),
