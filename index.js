@@ -15,24 +15,52 @@ const handler = async (event) => {
         const url = baseUrl + record.messageAttributes.Link.stringValue;
         console.log(url);
 
+        const {
+            Organisation: {stringValue: organisation}, 
+            Location: {stringValue:location},
+            Title: {stringValue:title},
+            Type: {stringValue: type},
+            ClosingDate: {stringValue:closingDate},
+            ID: {stringValue:id}
+        } = record.messageAttributes;
+
+        console.log('organisation',organisation);
+        console.log('location', location);
+        console.log('title',title);
+        console.log('type',type);
+        console.log('closingDate', closingDate);
+        console.log('id',id);
+
         console.log('calling get essential skills for url', url);
         const eSkills = await essentialSkillsModule.getEssentialSkills(url);
         console.log("eSkills:", eSkills);
+
+        console.log('calling get entities for eskills:', eSkills.text);
+        const { Entities: eSkillEntities } = await entitiesModule.getEntities(eSkills.text);
+        console.log("Essential Entities", eSkillEntities);
+
+        // only interested in TITLE entities
+        const keyEssentialEntities = eSkillEntities.filter(entity => entity.Type === 'TITLE');
+        console.log('keyEssentialEntities', keyEssentialEntities);  
+        if(keyEssentialEntities.length){
+            console.log('adding vertex to graphdb using gremlin');
+        }
 
         console.log('calling get nice to have skills for url', url);
         const niceSkills = await niceToHaveSkillsModule.getNiceToHaveSkills(url);
         console.log("niceSkills:", niceSkills);
 
-        console.log('calling get entities for eskills:', eSkills.text);
-        const { Entities: entities } = await entitiesModule.getEntities(eSkills.text);
-        console.log("entities:", entities);
-
+        console.log('calling get entities for nice to haves:', niceSkills.text);
+        const { Entities: niceToHaveSkillEntities } = await entitiesModule.getEntities(niceSkills.text);
+        console.log("Essential Entities", niceToHaveSkillEntities);
+      
         // only interested in TITLE entities
-        const keyEntities = entities.filter(entity => entity.Type === 'TITLE');
-        console.log('keyEntities = ', keyEntities);  
-        if(keyEntities.length){
+        const keyNiceToHaveEntities = niceToHaveSkillEntities.filter(entity => entity.Type === 'TITLE');
+        console.log('keyNiceToHaveEntities', keyNiceToHaveEntities);  
+        if(keyNiceToHaveEntities.length){
             console.log('adding vertex to graphdb using gremlin');
         }
+
     }));
 
     return {
