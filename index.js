@@ -1,13 +1,9 @@
-// const gremlin = require('gremlin');
+const graphUtils = require('./helpers/graphUtils');
 const essentialSkillsModule  = require('./helpers/getEssentialSkills');
 const niceToHaveSkillsModule  = require('./helpers/getNiceToHaveSkills');
 const entitiesModule = require('./helpers/getEntities');
 
 const baseUrl = 'https://www.digitalmarketplace.service.gov.uk';
-
-// const traversal = gremlin.process.AnonymousTraversalSource.traversal;
-// const DriverRemoteConnection = gremlin.driver.DriverRemoteConnection;
-// const g = traversal().withRemote(new DriverRemoteConnection('ws://localhost:8182/gremlin'));
 
 
 const handler = async (event) => {
@@ -25,11 +21,16 @@ const handler = async (event) => {
         } = record.messageAttributes;
 
         console.log('organisation',organisation);
+        await graphUtils.createOrganisation(organisation);
+
         console.log('location', location);
+        await graphUtils.createLocation(location);
+
         console.log('title',title);
         console.log('type',type);
         console.log('closingDate', closingDate);
         console.log('id',id);
+        await graphUtils.createOpportunity({id, title, date: closingDate, type});
 
         console.log('calling get essential skills for url', url);
         const eSkills = await essentialSkillsModule.getEssentialSkills(url);
@@ -43,7 +44,7 @@ const handler = async (event) => {
         const keyEssentialEntities = eSkillEntities.filter(entity => entity.Type === 'TITLE');
         console.log('keyEssentialEntities', keyEssentialEntities);  
         if(keyEssentialEntities.length){
-            console.log('adding vertex to graphdb using gremlin');
+            console.log('adding skills to graphdb using gremlin');
         }
 
         console.log('calling get nice to have skills for url', url);
@@ -58,7 +59,7 @@ const handler = async (event) => {
         const keyNiceToHaveEntities = niceToHaveSkillEntities.filter(entity => entity.Type === 'TITLE');
         console.log('keyNiceToHaveEntities', keyNiceToHaveEntities);  
         if(keyNiceToHaveEntities.length){
-            console.log('adding vertex to graphdb using gremlin');
+            console.log('adding skills to graphdb using gremlin');
         }
 
     }));
