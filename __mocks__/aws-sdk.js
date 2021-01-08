@@ -1,7 +1,7 @@
 /* eslint-disable class-methods-use-this */
 const detectEntitiesResult = jest.fn().mockResolvedValue(true);
 
-const Comprehend = {
+const Comprehend = class Comprehend {
   detectEntities()  {
     return {
       promise: detectEntitiesResult,
