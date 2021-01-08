@@ -1,7 +1,7 @@
 /* eslint-disable class-methods-use-this */
-export const detectEntitiesResult = jest.fn().mockResolvedValue(true);
+const detectEntitiesResult = jest.fn().mockResolvedValue(true);
 
-export const Comprehend = {
+const Comprehend = {
   detectEntities()  {
     return {
       promise: detectEntitiesResult,
@@ -9,6 +9,11 @@ export const Comprehend = {
   }
 };
 
-export const config = {
+const config = {
   update: jest.fn(),
 };
+
+module.exports = {
+  Comprehend,
+  config
+}
