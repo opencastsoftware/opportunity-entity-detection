@@ -1,6 +1,6 @@
 const osmosis = require('osmosis');
 
-function getEssentialSkills() {
+async function getEssentialSkills() {
     const url = 'https://www.digitalmarketplace.service.gov.uk/digital-outcomes-and-specialists/opportunities/13586';
     console.log("getting skills for: " + url);
     let text;
@@ -13,7 +13,6 @@ function getEssentialSkills() {
             .set('text')
             .data(data => {
                 text = data;
-                console.log(data);
             })
             .debug(console.log)
             .error((err) => console.log(err))
@@ -22,7 +21,7 @@ function getEssentialSkills() {
 }
 
 const handler = async ()=>{
-    const result = getEssentialSkills();
+    const result = await getEssentialSkills();
     console.log(result);
 };
 

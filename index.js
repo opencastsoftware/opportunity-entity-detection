@@ -14,7 +14,7 @@ AWS.config.update({ region: "eu-west-2" });
 const baseUrl = 'https://www.digitalmarketplace.service.gov.uk';
 
 
-function getEssentialSkills(url) {
+async function getEssentialSkills(url) {
     console.log("getting skills for: " + url);
     let text;
 
@@ -26,7 +26,6 @@ function getEssentialSkills(url) {
             .set('text')
             .data(data => {
                 text = data;
-                console.log(data);
             })
             .debug(console.log)
             .error((err) => console.log(err))
@@ -52,7 +51,7 @@ const handler = async (event) => {
             // await graphUtils.createLocation(location);
             // await graphUtils.createOpportunity({id, title, date: closingDate, type});
 
-            const eSkills = getEssentialSkills(url);
+            const eSkills = await getEssentialSkills(url);
             console.log("eSkills:", eSkills);
 
             // console.log('calling get entities for eskills:', eSkills.text);
