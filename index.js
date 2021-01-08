@@ -7,10 +7,11 @@ const baseUrl = 'https://www.digitalmarketplace.service.gov.uk';
 
 
 const handler = async (event) => {
+    console.log(event);
     await Promise.all(event.Records.map(async (record) => {
         const url = baseUrl + record.messageAttributes.Link.stringValue;
         console.log(url);
-
+        
         const {
             Organisation: {stringValue: organisation}, 
             Location: {stringValue:location},
