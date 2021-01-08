@@ -52,7 +52,7 @@ const handler = async (event) => {
             // await graphUtils.createLocation(location);
             // await graphUtils.createOpportunity({id, title, date: closingDate, type});
 
-            const eSkills = await getEssentialSkills(url);
+            const eSkills = getEssentialSkills(url);
             console.log("eSkills:", eSkills);
 
             // console.log('calling get entities for eskills:', eSkills.text);
