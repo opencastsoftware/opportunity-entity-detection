@@ -4,7 +4,7 @@ module.exports.getEssentialSkills = async (url) => {
     console.log("getting skills for: " + url);
     let text;
 
-    return new Promise((resolve, reject) => {
+    return new Promise((resolve) => {
         osmosis
             .get(url)
             .log(console.log)
@@ -14,7 +14,7 @@ module.exports.getEssentialSkills = async (url) => {
                 text = data;
             })
             .debug(console.log)
-            .error((err) => reject(err))
+            .error((err) => console.log(err))
             .done(() => resolve(text));
     });
 };

@@ -11,13 +11,21 @@ const entityDetection = require("./index")
 
 const essentialSkillSpy = jest.spyOn(essentialSkillsModule, 'getEssentialSkills');
 const niceSkillSpy = jest.spyOn(niceSkillsModule, 'getNiceToHaveSkills');
-const entitySpy = jest.spyOn(entityModule, 'getEntities');
+
+jest.mock('./helpers/getEntities', ()=>{
+    return{
+        getEntities: jest.fn().mockResolvedValue({Entities:[{Text:'C#', Type:'TITLE'}, {Text:'NodeJS', Type:'TITLE'}]}),
+    }
+});
 
 jest.mock('./helpers/graphUtils', ()=>{
     return {
         createLocation: jest.fn().mockResolvedValue(true),
         createOpportunity:jest.fn().mockResolvedValue(true),
         createOrganisation:jest.fn().mockResolvedValue(true),
+        createEntity: jest.fn().mockResolvedValue(true),
+        createEssentialEdge: jest.fn().mockResolvedValue(true),
+
         getLocations: jest.fn().mockResolvedValue(true),
         getOrganisations: jest.fn().mockResolvedValue(true),
         getOpportunities: jest.fn().mockResolvedValue(true),
@@ -25,20 +33,15 @@ jest.mock('./helpers/graphUtils', ()=>{
 })
 
 describe('handler', ()=>{
-    jest.mock('./helpers/getEntities', ()=>{
-        return{
-            getEntities: jest.fn().mockResolvedValue(true),
-        }
-    });
     let event;
     beforeEach(()=>{
         graphModule.createLocation.mockClear();
         graphModule.createOpportunity.mockClear();
         graphModule.createOrganisation.mockClear();
+        graphModule.createEntity.mockClear();
 
         essentialSkillSpy.mockClear();
         niceSkillSpy.mockClear();
-        entitySpy.mockClear();
         event = {
             Records: [
                 {
@@ -96,7 +99,7 @@ describe('handler', ()=>{
     it('should call getEntities with the correct url for each message', async ()=>{ 
 
         const result = await entityDetection.handler(event);
-        expect(entitySpy).toHaveBeenCalledWith('Have experience of developing and establishing enterprise analytics and data innovation strategies, along with associated implementation plans;\n' +
+        expect(entityModule.getEntities).toHaveBeenCalledWith('Have experience of developing and establishing enterprise analytics and data innovation strategies, along with associated implementation plans;\n' +
         '          Have experience providing subject matter expertise across a wide range of internally and externally facing projects to conceptualize, design and deliver data analytics and insight projects;\n' +
         '          Demonstrable experience supporting agile delivery team’s application of data science, statistical analysis and geospatial mapping whilst seamlessly integrating into client teams;\n' +
         '          Experience of eliciting analytical requirements from a range of stakeholders, understand user needs and communicating technical/data principles, tools, techniques and requirements between non-technical business audiences and technical specialists;\n' +
@@ -125,7 +128,13 @@ describe('handler', ()=>{
         await entityDetection.handler(event);
         expect(graphModule.createOpportunity).toHaveBeenCalledWith({"date": "test date", "id": "test id", "title": "test title", "type": "test type"});
     })
-    
+
+    it('should call graph utils create entity for each entity found', async () => {
+        await entityDetection.handler(event);
+        expect(graphModule.createEntity).toHaveBeenCalledWith('C#');
+        expect(graphModule.createEntity).toHaveBeenCalledWith('NodeJS');
+    })
+   
 });
 
 describe("get opportunity essential skill", () => {

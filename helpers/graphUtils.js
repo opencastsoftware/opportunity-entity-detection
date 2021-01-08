@@ -33,7 +33,25 @@ async function createOpportunity(opp){
                     .property('date', date)
                     .property('type', type)
              ).next();
+}
 
+async function createEntity(entity){
+    return g.V().has('entity', 'name', entity).fold().coalesce(
+                __.unfold(), 
+                __.addV('entity')
+                    .property('name', entity)
+             ).next();
+            
+}
+
+async function createEssentialEdge(entity, opportunityId){
+    return g.V().has('entity','name', entity).out('ESSENTIAL_TO').has('opportunity','id', opportunityId).fold()
+            .coalesce(
+                __.unfold(), 
+                g.V().has('entity', 'name', entity).as('a').
+                V().has('opportunity','id', opportunityId).as('b')
+                    .addE('ESSENTIAL_TO')
+                    .from_('a').to('b')).next();
 }
 
 async function getLocations(){
@@ -70,6 +88,8 @@ module.exports = {
     createOrganisation,
     createLocation,
     createOpportunity,
+    createEntity,
+    createEssentialEdge,
     getLocations,
     getOpportunities,
     getOrganisations

@@ -4,7 +4,6 @@ const essentialSkillsModule  = require('./helpers/getEssentialSkills');
 const niceToHaveSkillsModule  = require('./helpers/getNiceToHaveSkills');
 const entitiesModule = require('./helpers/getEntities');
 
-
 async function handler(event) {
     const baseUrl = 'https://www.digitalmarketplace.service.gov.uk';
 
@@ -27,25 +26,31 @@ async function handler(event) {
 
             const eSkills = await essentialSkillsModule.getEssentialSkills(url);
             const { Entities: eSkillEntities } = await entitiesModule.getEntities(eSkills.text);
-            console.log("Essential Entities", eSkillEntities);
+         
 
             // only interested in TITLE entities
-            // const keyEssentialEntities = eSkillEntities.filter(entity => entity.Type === 'TITLE');
-            // console.log('keyEssentialEntities', keyEssentialEntities);  
-            // if(keyEssentialEntities.length){
-            //     console.log('adding skills to graphdb using gremlin');
-            // }
+            const keyEssentialEntities = eSkillEntities.filter(entity => entity.Type === 'TITLE');
+            if(keyEssentialEntities.length){
+                console.log('Adding key essential entities', keyEssentialEntities);
+                await Promise.all(keyEssentialEntities.map(async ({Text:entityName})=>{
+                    // Add the entity
+                    await graphUtils.createEntity(entityName);
+                    // Add the "ESSENTIAL" edge to the vertex
+                    await graphUtils.createEssentialEdge(entityName, id);
+                }));
+            }
 
             const niceSkills = await niceToHaveSkillsModule.getNiceToHaveSkills(url);
             const { Entities: niceToHaveSkillEntities } = await entitiesModule.getEntities(niceSkills.text);
-            console.log("niceToHaveSkillEntities", niceToHaveSkillEntities);
         
             // only interested in TITLE entities
-            // const keyNiceToHaveEntities = niceToHaveSkillEntities.filter(entity => entity.Type === 'TITLE');
-            // console.log('keyNiceToHaveEntities', keyNiceToHaveEntities);  
-            // if(keyNiceToHaveEntities.length){
-            //     console.log('adding skills to graphdb using gremlin');
-            // }
+            const keyNiceToHaveEntities = niceToHaveSkillEntities.filter(entity => entity.Type === 'TITLE');
+            if(keyNiceToHaveEntities.length){
+                console.log('Adding key NiceToHave entities', keyNiceToHaveEntities);
+                await Promise.all(keyNiceToHaveEntities.map(async ({Text:entityName})=>{
+                    await graphUtils.createEntity(entityName);
+                }));
+            }
 
         }));
 
