@@ -134,6 +134,12 @@ describe('handler', ()=>{
         expect(graphModule.createEntity).toHaveBeenCalledWith('C#');
         expect(graphModule.createEntity).toHaveBeenCalledWith('NodeJS');
     })
+
+    it('should call graph utils create essential entity edge for each entity found', async () => {
+        await entityDetection.handler(event);
+        expect(graphModule.createEssentialEdge).toHaveBeenCalledWith('C#', 'test id');
+        expect(graphModule.createEssentialEdge).toHaveBeenCalledWith('NodeJS', 'test id');
+    })
    
 });
 
