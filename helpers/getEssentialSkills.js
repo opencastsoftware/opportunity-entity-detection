@@ -12,7 +12,6 @@ module.exports.getEssentialSkills = async (url) => {
             .set('text')
             .data(data => {
                 text = data;
-                console.log(data);
             })
             .debug(console.log)
             .error((err) => reject(err))

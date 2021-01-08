@@ -32,6 +32,7 @@ describe('handler', ()=>{
     });
     let event;
     beforeEach(()=>{
+        essentialSkillSpy.mockClear();
         niceSkillSpy.mockClear();
         entitySpy.mockClear();
         event = {
@@ -40,7 +41,25 @@ describe('handler', ()=>{
                     body: 'User Centred Design Partner',
                     messageAttributes:{
                         Link:{
-                            stringValue: '/some/url'
+                            stringValue: '/digital-outcomes-and-specialists/opportunities/13237'
+                        },
+                        Organisation: {
+                            stringValue: 'test org'
+                        }, 
+                        Location: {
+                            stringValue:'test location'
+                        },
+                        Title: {
+                            stringValue:'test title'
+                        },
+                        Type: {
+                            stringValue: 'test type'
+                        },
+                        ClosingDate: {
+                            stringValue:'test date'
+                        },
+                        ID: {
+                            stringValue:'test id'
                         }
                     }
                 },
@@ -53,19 +72,20 @@ describe('handler', ()=>{
 
 
         nock("https://www.digitalmarketplace.service.gov.uk")
-            .get("/some/url")
+            .get("/digital-outcomes-and-specialists/opportunities/13237")
             .reply(200, fixture);
     });
 
     it.skip('should call getEssentialSkills with the correct url for each message', async ()=>{ 
+        console.log(essentialSkillSpy);
         const result = await entityDetection.handler(event);
-        expect(essentialSkillSpy).toHaveBeenCalledWith('https://www.digitalmarketplace.service.gov.uk/some/url');
+        expect(essentialSkillSpy).toHaveBeenCalledWith('https://www.digitalmarketplace.service.gov.uk/digital-outcomes-and-specialists/opportunities/13237');
         expect(result).toEqual({"body": "\"Proccessed the new opportunities!\"", "statusCode": 201});
     })
 
-    it.skip('should call getNiceToHaveSkills with the correct url for each message', async ()=>{ 
+    it('should call getNiceToHaveSkills with the correct url for each message', async ()=>{ 
         const result = await entityDetection.handler(event);
-        expect(niceSkillSpy).toHaveBeenCalledWith('https://www.digitalmarketplace.service.gov.uk/some/url');
+        expect(niceSkillSpy).toHaveBeenCalledWith('https://www.digitalmarketplace.service.gov.uk/digital-outcomes-and-specialists/opportunities/13237');
         expect(result).toEqual({"body": "\"Proccessed the new opportunities!\"", "statusCode": 201});
     })
 
