@@ -80,20 +80,20 @@ describe('handler', ()=>{
             .reply(200, fixture);
     });
 
-    it.skip('should call getEssentialSkills with the correct url for each message', async ()=>{ 
+    it('should call getEssentialSkills with the correct url for each message', async ()=>{ 
         const result = await entityDetection.handler(event);
         expect(essentialSkillSpy).toHaveBeenCalledWith('https://www.digitalmarketplace.service.gov.uk/digital-outcomes-and-specialists/opportunities/13237');
         expect(result).toEqual({"body": "\"Proccessed the new opportunities!\"", "statusCode": 201});
     })
 
-    it.skip('should call getNiceToHaveSkills with the correct url for each message', async ()=>{ 
+    it('should call getNiceToHaveSkills with the correct url for each message', async ()=>{ 
         const result = await entityDetection.handler(event);
         expect(niceSkillSpy).toHaveBeenCalledWith('https://www.digitalmarketplace.service.gov.uk/digital-outcomes-and-specialists/opportunities/13237');
         expect(result).toEqual({"body": "\"Proccessed the new opportunities!\"", "statusCode": 201});
     })
 
 
-    it.skip('should call getEntities with the correct url for each message', async ()=>{ 
+    it('should call getEntities with the correct url for each message', async ()=>{ 
 
         const result = await entityDetection.handler(event);
         expect(entitySpy).toHaveBeenCalledWith('Have experience of developing and establishing enterprise analytics and data innovation strategies, along with associated implementation plans;\n' +
