@@ -56,15 +56,17 @@ async function handler(event) {
         const opportunities = await graphUtils.getOpportunities();
         console.log('opportunities', opportunities);
 
+        return {
+            statusCode: 201,
+            body: JSON.stringify("Proccessed the new opportunities!"),
+          };
     }catch(e){
         console.log(e)
+        return {
+            statusCode: 500,
+            body: JSON.stringify("Something went wrong!"),
+          };
     }
-
-    return {
-        statusCode: 201,
-        body: JSON.stringify("Proccessed the new opportunities!"),
-      };
-
 }
 
 module.exports = {
