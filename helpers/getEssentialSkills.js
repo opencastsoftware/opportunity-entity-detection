@@ -1,6 +1,6 @@
 const osmosis = require("osmosis");
 
-module.exports.getEssentialSkills = (url) => {
+module.exports.getEssentialSkills = async (url) => {
     console.log("getting skills for: " + url);
     let text;
 

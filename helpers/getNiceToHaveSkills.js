@@ -1,6 +1,6 @@
 const osmosis = require("osmosis");
 
-module.exports.getNiceToHaveSkills = (url) => {
+module.exports.getNiceToHaveSkills = async (url) => {
     let text;
     return new Promise((resolve) => {
         osmosis

@@ -1,0 +1,71 @@
+{
+  "Records": [
+    {
+      "messageId": "428b0b45-0094-4fe6-be44-4fb0c638f51f",
+      "receiptHandle": "AQEB1pCjofVGcfzKvanHhq4d6EJRLGJwPlGmYQBd67gGDDGbp0mXMigF2FV6Mvj0SlT5hHoLZ7n+YOCTws/pN20kU6m0P2wVSoRR7UgTEiz8DTdF0pU3lMOhk0wZRDrtHqH5yv/aKHdctSB0ct20TTwH2qoD3IxApMeJXf9/QtoxhGLHh4tAixBFu82bQUD2RA1DhP2Xjblvu4lI99Xeq9OIzjy6VB5Q8xpbGIZA2KqM/BTSUEKVbDJ+HTC0bcVvr+4KNG3NYFpe6u6L6pKN2/CftPfYPCOObpGBwHZxggI3mJMb58du+qNR1RNQFkrA9cxa33aMAhjBd9AUTueeos/+cB6mnpc0gwyTRkl6pGxcgW1ZKOUG3g8SNwR5/DR7hEhvTlQlwQWaN3XSLcdFPPSSuQ==",
+      "body": "Tate Galleries - CMS Replacement Project",
+      "attributes": {},
+      "messageAttributes": {
+        "QuestionsDeadlineDate": {
+          "stringValue": "1610496000000",
+          "stringListValues": [],
+          "binaryListValues": [],
+          "dataType": "Number"
+        },
+        "Type": {
+          "stringValue": "Digital outcomes",
+          "stringListValues": [],
+          "binaryListValues": [],
+          "dataType": "String"
+        },
+        "Organisation": {
+          "stringValue": "Tate Galleries",
+          "stringListValues": [],
+          "binaryListValues": [],
+          "dataType": "String"
+        },
+        "Title": {
+          "stringValue": "Tate Galleries - CMS Replacement Project",
+          "stringListValues": [],
+          "binaryListValues": [],
+          "dataType": "String"
+        },
+        "ClosingDate": {
+          "stringValue": "1611100800000",
+          "stringListValues": [],
+          "binaryListValues": [],
+          "dataType": "Number"
+        },
+        "PublishedDate": {
+          "stringValue": "1609891200000",
+          "stringListValues": [],
+          "binaryListValues": [],
+          "dataType": "Number"
+        },
+        "ID": {
+          "stringValue": "13586",
+          "stringListValues": [],
+          "binaryListValues": [],
+          "dataType": "Number"
+        },
+        "Link": {
+          "stringValue": "/digital-outcomes-and-specialists/opportunities/13586",
+          "stringListValues": [],
+          "binaryListValues": [],
+          "dataType": "String"
+        },
+        "Location": {
+          "stringValue": "Off-site",
+          "stringListValues": [],
+          "binaryListValues": [],
+          "dataType": "String"
+        }
+      },
+      "md5OfMessageAttributes": "e1fdfb95df2114d464a07e9b85cbfb17",
+      "md5OfBody": "42740201eedef87ce50ea9f78054d8b8",
+      "eventSource": "aws:sqs",
+      "eventSourceARN": "arn:aws:sqs:eu-west-2:789546618477:NewOpportunities",
+      "awsRegion": "eu-west-2"
+    }
+  ]
+}
