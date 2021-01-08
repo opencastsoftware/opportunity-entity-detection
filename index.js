@@ -8,11 +8,11 @@ const entitiesModule = require('./helpers/getEntities');
 const baseUrl = 'https://www.digitalmarketplace.service.gov.uk';
 
 
-function getEssentialSkills(url){
+async function getEssentialSkills(url){
     console.log("getting skills for: " + url);
     let text;
 
-    return new Promise((resolve, reject) => {
+    return new Promise((resolve) => {
         osmosis
             .get(url)
             .log(console.log)
@@ -23,7 +23,7 @@ function getEssentialSkills(url){
                 console.log(data);
             })
             .debug(console.log)
-            .error((err) => reject(err))
+            .error((err) => console.log(err))
             .done(() => resolve(text));
     });
 };
