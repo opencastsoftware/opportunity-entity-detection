@@ -1,6 +1,6 @@
 const osmosis = require("osmosis");
 
-const graphUtils = require('./helpers/graphUtils');
+// const graphUtils = require('./helpers/graphUtils');
 // const essentialSkillsModule  = require('./helpers/getEssentialSkills');
 const niceToHaveSkillsModule  = require('./helpers/getNiceToHaveSkills');
 const entitiesModule = require('./helpers/getEntities');
@@ -41,10 +41,10 @@ const handler = async (event) => {
                 ID: {stringValue:id}
             } = record.messageAttributes;
 
-            console.log('creating organisation, location and opportunity vertex');
-            await graphUtils.createOrganisation(organisation);
-            await graphUtils.createLocation(location);
-            await graphUtils.createOpportunity({id, title, date: closingDate, type});
+            //console.log('creating organisation, location and opportunity vertex');
+            // await graphUtils.createOrganisation(organisation);
+            // await graphUtils.createLocation(location);
+            // await graphUtils.createOpportunity({id, title, date: closingDate, type});
 
             console.log('calling get essential skills for url', url);
             const eSkills = await getEssentialSkills(url);
@@ -78,12 +78,12 @@ const handler = async (event) => {
 
         }));
 
-        const organisations = await graphUtils.getOrganisations();
-        console.log('organisations', organisations);
-        const locations = await graphUtils.getLocations();
-        console.log('locations', locations);
-        const opportunities = await graphUtils.getOpportunities();
-        console.log('opportunities', opportunities);
+        // const organisations = await graphUtils.getOrganisations();
+        // console.log('organisations', organisations);
+        // const locations = await graphUtils.getLocations();
+        // console.log('locations', locations);
+        // const opportunities = await graphUtils.getOpportunities();
+        // console.log('opportunities', opportunities);
     }catch(e){
         console.log(e)
     }
