@@ -1,24 +1,15 @@
 const osmosis = require("osmosis");
 
-const AWS = require("aws-sdk");
-const fetch = require('node-fetch');
-
-AWS.config.update({ region: "eu-west-2" });
-// const comprehend = new AWS.Comprehend({ apiVersion: '2017-11-27' });
-
 // const graphUtils = require('./helpers/graphUtils');
 // const essentialSkillsModule  = require('./helpers/getEssentialSkills');
 // const niceToHaveSkillsModule  = require('./helpers/getNiceToHaveSkills');
 // const entitiesModule = require('./helpers/getEntities');
 
-const baseUrl = 'https://www.digitalmarketplace.service.gov.uk';
-
-
 async function getEssentialSkills(url) {
     console.log("getting skills for: " + url);
     let text;
 
-    return new Promise((resolve) => {
+    return new Promise((resolve,reject) => {
         osmosis
             .get(url)
             .log(console.log)
@@ -28,12 +19,14 @@ async function getEssentialSkills(url) {
                 text = data;
             })
             .debug(console.log)
-            .error((err) => console.log(err))
+            .error((err) => reject(err))
             .done(() => resolve(text));
     });
 }
 
-const handler = async (event) => {
+async function handler(event) {
+    const baseUrl = 'https://www.digitalmarketplace.service.gov.uk';
+
     try{
         await Promise.all(event.Records.map(async (record) => {
             const url = baseUrl + record.messageAttributes.Link.stringValue;
@@ -100,5 +93,6 @@ const handler = async (event) => {
 }
 
 module.exports = {
-    handler
+    handler,
+    getEssentialSkills
 }

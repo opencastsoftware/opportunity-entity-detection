@@ -1,16 +1,13 @@
 const fs = require("fs");
 const { join } = require("path");
 const nock = require("nock");
-const AWS = require("aws-sdk");
 
-AWS.config.update({ region: "eu-west-2" });
-
-const essentialSkillsModule = require('./helpers/getEssentialSkills');
+//const essentialSkillsModule = require('./helpers/getEssentialSkills');
 const niceSkillsModule = require('./helpers/getNiceToHaveSkills');
 const entityModule = require('./helpers/getEntities');
 const entityDetection = require("./index")
 
-const essentialSkillSpy = jest.spyOn(essentialSkillsModule, 'getEssentialSkills');
+//const essentialSkillSpy = jest.spyOn(essentialSkillsModule, 'getEssentialSkills');
 const niceSkillSpy = jest.spyOn(niceSkillsModule, 'getNiceToHaveSkills');
 const entitySpy = jest.spyOn(entityModule, 'getEntities');
 
@@ -93,7 +90,7 @@ describe("get opportunity essential skill", () => {
         .reply(200, fixture);
 
     it("should return the essential skills text", async () => {
-        const skillsText = await essentialSkillsModule.getEssentialSkills(url);
+        const skillsText = await entityDetection.getEssentialSkills(url);
         expect(skillsText.text).toEqual('Have experience of developing and establishing enterprise analytics and data innovation strategies, along with associated implementation plans;\n' +
             '          Have experience providing subject matter expertise across a wide range of internally and externally facing projects to conceptualize, design and deliver data analytics and insight projects;\n' +
             '          Demonstrable experience supporting agile delivery team’s application of data science, statistical analysis and geospatial mapping whilst seamlessly integrating into client teams;\n' +

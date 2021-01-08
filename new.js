@@ -5,7 +5,7 @@ async function getEssentialSkills() {
     console.log("getting skills for: " + url);
     let text;
 
-    return new Promise((resolve) => {
+    return new Promise((resolve,reject) => {
         osmosis
             .get(url)
             .log(console.log)
@@ -15,14 +15,19 @@ async function getEssentialSkills() {
                 text = data;
             })
             .debug(console.log)
-            .error((err) => console.log(err))
+            .error((err) => reject(err))
             .done(() => resolve(text));
     });
 }
 
 const handler = async ()=>{
-    const result = await getEssentialSkills();
-    console.log(result);
+    try {
+        const result = await getEssentialSkills();
+        console.log(result);
+    }
+    catch(e){
+        console.log(e);
+    }
 };
 
 handler();
