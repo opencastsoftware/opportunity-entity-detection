@@ -1,28 +1,9 @@
-const osmosis = require("osmosis");
 
-// const graphUtils = require('./helpers/graphUtils');
-// const essentialSkillsModule  = require('./helpers/getEssentialSkills');
-// const niceToHaveSkillsModule  = require('./helpers/getNiceToHaveSkills');
-// const entitiesModule = require('./helpers/getEntities');
+const graphUtils = require('./helpers/graphUtils');
+const essentialSkillsModule  = require('./helpers/getEssentialSkills');
+const niceToHaveSkillsModule  = require('./helpers/getNiceToHaveSkills');
+const entitiesModule = require('./helpers/getEntities');
 
-async function getEssentialSkills(url) {
-    console.log("getting skills for: " + url);
-    let text;
-
-    return new Promise((resolve,reject) => {
-        osmosis
-            .get(url)
-            .log(console.log)
-            .find('//*[@id="main-content"]/div/div/dl[6]/div[1]/dd/ul')
-            .set('text')
-            .data(data => {
-                text = data;
-            })
-            .debug(console.log)
-            .error((err) => reject(err))
-            .done(() => resolve(text));
-    });
-}
 
 async function handler(event) {
     const baseUrl = 'https://www.digitalmarketplace.service.gov.uk';
@@ -30,26 +11,23 @@ async function handler(event) {
     try{
         await Promise.all(event.Records.map(async (record) => {
             const url = baseUrl + record.messageAttributes.Link.stringValue;
-            // const {
-            //     Organisation: {stringValue: organisation}, 
-            //     Location: {stringValue:location},
-            //     Title: {stringValue:title},
-            //     Type: {stringValue: type},
-            //     ClosingDate: {stringValue:closingDate},
-            //     ID: {stringValue:id}
-            // } = record.messageAttributes;
+            const {
+                Organisation: {stringValue: organisation}, 
+                Location: {stringValue:location},
+                Title: {stringValue:title},
+                Type: {stringValue: type},
+                ClosingDate: {stringValue:closingDate},
+                ID: {stringValue:id}
+            } = record.messageAttributes;
 
-            //console.log('creating organisation, location and opportunity vertex');
-            // await graphUtils.createOrganisation(organisation);
-            // await graphUtils.createLocation(location);
-            // await graphUtils.createOpportunity({id, title, date: closingDate, type});
+            console.log('creating organisation, location and opportunity vertex');
+            await graphUtils.createOrganisation(organisation);
+            await graphUtils.createLocation(location);
+            await graphUtils.createOpportunity({id, title, date: closingDate, type});
 
-            const eSkills = await getEssentialSkills(url);
-            console.log("eSkills:", eSkills);
-
-            // console.log('calling get entities for eskills:', eSkills.text);
-            // const { Entities: eSkillEntities } = await entitiesModule.getEntities(eSkills.text);
-            // console.log("Essential Entities", eSkillEntities);
+            const eSkills = await essentialSkillsModule.getEssentialSkills(url);
+            const { Entities: eSkillEntities } = await entitiesModule.getEntities(eSkills.text);
+            console.log("Essential Entities", eSkillEntities);
 
             // only interested in TITLE entities
             // const keyEssentialEntities = eSkillEntities.filter(entity => entity.Type === 'TITLE');
@@ -58,13 +36,9 @@ async function handler(event) {
             //     console.log('adding skills to graphdb using gremlin');
             // }
 
-            // console.log('calling get nice to have skills for url', url);
-            // const niceSkills = await niceToHaveSkillsModule.getNiceToHaveSkills(url);
-            // console.log("niceSkills:", niceSkills);
-
-            // console.log('calling get entities for nice to haves:', niceSkills.text);
-            // const { Entities: niceToHaveSkillEntities } = await entitiesModule.getEntities(niceSkills.text);
-            // console.log("niceToHaveSkillEntities", niceToHaveSkillEntities);
+            const niceSkills = await niceToHaveSkillsModule.getNiceToHaveSkills(url);
+            const { Entities: niceToHaveSkillEntities } = await entitiesModule.getEntities(niceSkills.text);
+            console.log("niceToHaveSkillEntities", niceToHaveSkillEntities);
         
             // only interested in TITLE entities
             // const keyNiceToHaveEntities = niceToHaveSkillEntities.filter(entity => entity.Type === 'TITLE');
@@ -75,12 +49,13 @@ async function handler(event) {
 
         }));
 
-        // const organisations = await graphUtils.getOrganisations();
-        // console.log('organisations', organisations);
-        // const locations = await graphUtils.getLocations();
-        // console.log('locations', locations);
-        // const opportunities = await graphUtils.getOpportunities();
-        // console.log('opportunities', opportunities);
+        const organisations = await graphUtils.getOrganisations();
+        console.log('organisations', organisations);
+        const locations = await graphUtils.getLocations();
+        console.log('locations', locations);
+        const opportunities = await graphUtils.getOpportunities();
+        console.log('opportunities', opportunities);
+
     }catch(e){
         console.log(e)
     }
@@ -93,6 +68,5 @@ async function handler(event) {
 }
 
 module.exports = {
-    handler,
-    getEssentialSkills
-}
+    handler
+};

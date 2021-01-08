@@ -2,21 +2,32 @@ const fs = require("fs");
 const { join } = require("path");
 const nock = require("nock");
 
-//const essentialSkillsModule = require('./helpers/getEssentialSkills');
+const graphModule = require('./helpers/graphUtils');
+
+const essentialSkillsModule = require('./helpers/getEssentialSkills');
 const niceSkillsModule = require('./helpers/getNiceToHaveSkills');
 const entityModule = require('./helpers/getEntities');
 const entityDetection = require("./index")
 
-//const essentialSkillSpy = jest.spyOn(essentialSkillsModule, 'getEssentialSkills');
+const essentialSkillSpy = jest.spyOn(essentialSkillsModule, 'getEssentialSkills');
 const niceSkillSpy = jest.spyOn(niceSkillsModule, 'getNiceToHaveSkills');
 const entitySpy = jest.spyOn(entityModule, 'getEntities');
 
-
+jest.mock('./helpers/graphUtils', ()=>{
+    return {
+        createLocation: jest.fn().mockResolvedValue(true),
+        createOpportunity:jest.fn().mockResolvedValue(true),
+        createOrganisation:jest.fn().mockResolvedValue(true),
+        getLocations: jest.fn().mockResolvedValue(true),
+        getOrganisations: jest.fn().mockResolvedValue(true),
+        getOpportunities: jest.fn().mockResolvedValue(true),
+    }
+})
 
 describe('handler', ()=>{
     jest.mock('./helpers/getEntities', ()=>{
         return{
-            getEntities: jest.fn()
+            getEntities: jest.fn().mockResolvedValue(true),
         }
     });
     let event;
@@ -90,7 +101,7 @@ describe("get opportunity essential skill", () => {
         .reply(200, fixture);
 
     it("should return the essential skills text", async () => {
-        const skillsText = await entityDetection.getEssentialSkills(url);
+        const skillsText = await essentialSkillsModule.getEssentialSkills(url);
         expect(skillsText.text).toEqual('Have experience of developing and establishing enterprise analytics and data innovation strategies, along with associated implementation plans;\n' +
             '          Have experience providing subject matter expertise across a wide range of internally and externally facing projects to conceptualize, design and deliver data analytics and insight projects;\n' +
             '          Demonstrable experience supporting agile delivery team’s application of data science, statistical analysis and geospatial mapping whilst seamlessly integrating into client teams;\n' +
