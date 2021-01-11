@@ -30,7 +30,6 @@ async function createOpportunity(opp) {
         __.addV('opportunity')
             .property('name', title)
             .property('id', id)
-            .property('date', date)
             .property('type', type)
             .property('publishedDate', publishedDate)
             .property('questionsDeadlineDate', questionsDeadlineDate)
