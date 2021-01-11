@@ -123,7 +123,7 @@ describe('handler', () => {
 
     it('should call graph utils create opportunity', async () => {
         await entityDetection.handler(event);
-        expect(graphModule.createOpportunity).toHaveBeenCalledWith({ "id": "test id", "title": "test title", "type": "test type", "publishedDate": 1601938800000, "questionsDeadlineDate": 1602543600000, "closingDate": 1603148400000 });
+        expect(graphModule.createOpportunity).toHaveBeenCalledWith({ "id": "test id", "title": "test title", "type": "test type", "publishedDate": 1601942400000, "questionsDeadlineDate": 1602547200000, "closingDate": 1603152000000 });
     })
 
     it('should call graph utils create entity for each entity found', async () => {
@@ -210,17 +210,17 @@ describe("get opporunity details", () => {
 
     it("should set the published date", async () => {
         const opportunity = await opportunityDates.getDates(url);
-        expect(opportunity.publishedDate).toEqual(1601938800000);
+        expect(opportunity.publishedDate).toEqual(1601942400000);
     });
 
     it("should set the questions deadline date", async () => {
         const opportunity = await opportunityDates.getDates(url);
-        expect(opportunity.questionsDeadlineDate).toEqual(1602543600000);
+        expect(opportunity.questionsDeadlineDate).toEqual(1602547200000);
     });
 
     it("should set the closing date", async () => {
         const opportunity = await opportunityDates.getDates(url);
-        expect(opportunity.closingDate).toEqual(1603148400000);
+        expect(opportunity.closingDate).toEqual(1603152000000);
     });
 
 });

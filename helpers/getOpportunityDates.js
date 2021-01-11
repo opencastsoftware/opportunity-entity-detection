@@ -12,11 +12,11 @@ module.exports.getDates = async (url) => {
                 closingDate: "div[3]/dd"
             })
             .data(x => {
-                dates.publishedDate = Date.parse(x.publishedDate.match(/\d+ \w+ \d+/));
+                dates.publishedDate = Date.parse(x.publishedDate.match(/\d+ \w+ \d+/) + " UTC");
                 dates.questionsDeadlineDate = Date.parse(
-                    x.questionsDeadlineDate.match(/\d+ \w+ \d+/)
+                    x.questionsDeadlineDate.match(/\d+ \w+ \d+/) + " UTC"
                 );
-                dates.closingDate = Date.parse(x.closingDate.match(/\d+ \w+ \d+/));
+                dates.closingDate = Date.parse(x.closingDate.match(/\d+ \w+ \d+/) + " UTC");
             })
             .error((err) => console.log(err))
             .done(() => resolve(dates));
