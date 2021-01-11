@@ -33,6 +33,7 @@ jest.mock('./helpers/graphUtils', () => {
     }
 })
 
+
 describe('handler', () => {
     let event;
     beforeEach(() => {
@@ -122,7 +123,7 @@ describe('handler', () => {
 
     it('should call graph utils create opportunity', async () => {
         await entityDetection.handler(event);
-        expect(graphModule.createOpportunity).toHaveBeenCalledWith({ "id": "test id", "title": "test title", "type": "test type" });
+        expect(graphModule.createOpportunity).toHaveBeenCalledWith({ "id": "test id", "title": "test title", "type": "test type", "publishedDate": 1601938800000, "questionsDeadlineDate": 1602543600000, "closingDate": 1603148400000 });
     })
 
     it('should call graph utils create entity for each entity found', async () => {

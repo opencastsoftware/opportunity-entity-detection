@@ -3,6 +3,7 @@ const graphUtils = require('./helpers/graphUtils');
 const essentialSkillsModule = require('./helpers/getEssentialSkills');
 const niceToHaveSkillsModule = require('./helpers/getNiceToHaveSkills');
 const entitiesModule = require('./helpers/getEntities');
+const datesModules = require('./helpers/getOpportunityDates');
 
 async function handler(event) {
     const baseUrl = 'https://www.digitalmarketplace.service.gov.uk';
@@ -18,10 +19,20 @@ async function handler(event) {
                 ID: { stringValue: id }
             } = record.messageAttributes;
 
+            console.log('getting opportunity dates');
+            const { publishedDate, questionsDeadlineDate, closingDate } = await datesModules.getDates(url);
+
             console.log('creating organisation, location and opportunity vertex');
             await graphUtils.createOrganisation(organisation);
             await graphUtils.createLocation(location);
-            await graphUtils.createOpportunity({ id, title, type });
+            await graphUtils.createOpportunity({
+                id,
+                title,
+                type,
+                publishedDate,
+                questionsDeadlineDate,
+                closingDate
+            });
 
             const eSkills = await essentialSkillsModule.getEssentialSkills(url);
             const { Entities: eSkillEntities } = await entitiesModule.getEntities(eSkills.text);
