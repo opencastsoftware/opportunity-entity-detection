@@ -71,6 +71,9 @@ async function handler(event) {
         const opportunities = await graphUtils.getOpportunities();
         console.log('opportunities', opportunities);
 
+        console.log('saving to neptune');
+        await graphUtils.save();
+
         return {
             statusCode: 201,
             body: JSON.stringify("Proccessed the new opportunities!"),

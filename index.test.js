@@ -30,6 +30,7 @@ jest.mock('./helpers/graphUtils', () => {
         getLocations: jest.fn().mockResolvedValue(true),
         getOrganisations: jest.fn().mockResolvedValue(true),
         getOpportunities: jest.fn().mockResolvedValue(true),
+        save: jest.fn().mockResolvedValue(true)
     }
 })
 
