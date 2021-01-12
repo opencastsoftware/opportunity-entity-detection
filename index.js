@@ -10,6 +10,7 @@ async function handler(event) {
 
     try {
         await Promise.all(event.Records.map(async (record) => {
+            console.log(record);
             const url = baseUrl + record.messageAttributes.Link.stringValue;
             const {
                 Organisation: { stringValue: organisation },
@@ -63,6 +64,9 @@ async function handler(event) {
             }
 
         }));
+
+        console.log('saving to neptune');
+        await graphUtils.save();
 
         const organisations = await graphUtils.getOrganisations();
         console.log('organisations', organisations);
