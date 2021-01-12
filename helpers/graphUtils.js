@@ -47,7 +47,7 @@ async function createEntity(entity) {
 }
 
 async function save() {
-    return g.next();
+    return g.V().iterate();
 }
 
 async function createEssentialEdge(entity, opportunityId) {
