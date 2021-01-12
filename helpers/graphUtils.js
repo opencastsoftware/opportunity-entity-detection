@@ -12,14 +12,14 @@ async function createOrganisation(organisationName) {
     return g.V().has('organisation', 'name', organisationName).fold().coalesce(
         __.unfold(),
         __.addV('organisation').property('name', organisationName)
-    )//.next();
+    ).next();
 }
 
 async function createLocation(locName) {
     return g.V().has('location', 'name', locName).fold().coalesce(
         __.unfold(),
         __.addV('location').property('name', locName)
-    )//.next();
+    ).next();
 }
 
 async function createOpportunity(opp) {
@@ -34,7 +34,7 @@ async function createOpportunity(opp) {
             .property('publishedDate', publishedDate)
             .property('questionsDeadlineDate', questionsDeadlineDate)
             .property('closingDate', closingDate)
-    )//.next();
+    ).next();
 }
 
 async function createEntity(entity) {
@@ -42,7 +42,7 @@ async function createEntity(entity) {
         __.unfold(),
         __.addV('entity')
             .property('name', entity)
-    )//.next();
+    ).next();
 
 }
 
@@ -57,7 +57,7 @@ async function createEssentialEdge(entity, opportunityId) {
             g.V().has('entity', 'name', entity).as('a').
                 V().has('opportunity', 'id', opportunityId).as('b')
                 .addE('ESSENTIAL_TO')
-                .from_('a').to('b'))//.next();
+                .from_('a').to('b')).next();
 }
 
 async function getLocations() {

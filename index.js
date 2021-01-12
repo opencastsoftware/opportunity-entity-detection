@@ -67,7 +67,7 @@ async function handler(event) {
         }));
 
         console.log('saving to neptune');
-        await graphUtils.save();
+        //await graphUtils.save();
 
         const organisations = await graphUtils.getOrganisations();
         console.log('organisations', organisations);
