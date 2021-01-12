@@ -11,6 +11,7 @@ async function handler(event) {
     try {
         await Promise.all(event.Records.map(async (record) => {
             console.log(record);
+            console.log(record.messageAttributes.Link);
             const url = baseUrl + record.messageAttributes.Link.stringValue;
             const {
                 Organisation: { stringValue: organisation },
