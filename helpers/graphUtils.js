@@ -51,17 +51,11 @@ async function save() {
 }
 
 async function createOpprtunityLocationEdge(opportunityV, locationV) {
-    return opportunityV.addE('IS_IN').to(locationV);
+    return opportunityV.addE('IS_IN').to(locationV).next();
 }
 
-async function createEssentialEdge(entity, opportunityId) {
-    return g.V().has('entity', 'name', entity).out('ESSENTIAL_TO').has('opportunity', 'id', opportunityId).fold()
-        .coalesce(
-            __.unfold(),
-            g.V().has('entity', 'name', entity).as('a').
-                V().has('opportunity', 'id', opportunityId).as('b')
-                .addE('ESSENTIAL_TO')
-                .from_('a').to('b')).next();
+async function createEssentialEdge(entityV, opportunityV) {
+    return entityV.addE("ESSENTIAL_TO").to(opportunityV).next();
 }
 
 async function getLocations() {
@@ -103,5 +97,6 @@ module.exports = {
     getLocations,
     getOpportunities,
     getOrganisations,
-    save
+    save,
+    createOpprtunityLocationEdge
 }
