@@ -48,9 +48,9 @@ async function handler(event) {
                 console.log('Adding key essential entities', keyEssentialEntities);
                 await Promise.all(keyEssentialEntities.map(async ({ Text: entityName }) => {
                     // Add the entity
-                    await graphUtils.createEntity(entityName);
+                    const entityV = await graphUtils.createEntity(entityName);
                     // Add the "ESSENTIAL" edge to the vertex
-                    await graphUtils.createEssentialEdge(entityName, id);
+                    await graphUtils.createEssentialEdge(entityV, opportunityV);
                 }));
             }
 
