@@ -25,9 +25,9 @@ async function handler(event) {
             const { publishedDate, questionsDeadlineDate, closingDate } = await datesModules.getDates(url);
 
             console.log('creating organisation, location and opportunity vertex');
-            await graphUtils.createOrganisation(organisation);
-            await graphUtils.createLocation(location);
-            await graphUtils.createOpportunity({
+            const organisationV = await graphUtils.createOrganisation(organisation);
+            const locationV = await graphUtils.createLocation(location);
+            const opportunityV = await graphUtils.createOpportunity({
                 id,
                 title,
                 type,
@@ -35,6 +35,8 @@ async function handler(event) {
                 questionsDeadlineDate,
                 closingDate
             });
+
+            await graphUtils.createOpprtunityLocationEdge(opportunityV, locationV);
 
             const eSkills = await essentialSkillsModule.getEssentialSkills(url);
             const { Entities: eSkillEntities } = await entitiesModule.getEntities(eSkills.text);

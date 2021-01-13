@@ -50,6 +50,10 @@ async function save() {
     return g.V().iterate();
 }
 
+async function createOpprtunityLocationEdge(opportunityV, locationV) {
+    return opportunityV.addE('IS_IN').to(locationV);
+}
+
 async function createEssentialEdge(entity, opportunityId) {
     return g.V().has('entity', 'name', entity).out('ESSENTIAL_TO').has('opportunity', 'id', opportunityId).fold()
         .coalesce(
