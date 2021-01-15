@@ -50,18 +50,24 @@ async function save() {
     return g.V().iterate();
 }
 
-async function createOpprtunityLocationEdge(opportunityV, locationV) {
-    return g.V().has('opportunity', 'name', opportunityV.id).out('IS_IN').has('location', 'id', locationV.id).fold()
+async function createOpprtunityLocationEdge(opportunityId, locationName) {
+    return g.V().has('opportunity', 'id', opportunityId).out('IS_IN').has('location', 'name', locationName).fold()
         .coalesce(
             __.unfold(),
-            g.V().has('oppportunity', 'name', opportunityV.id).as('a').
-                V().has('location', 'id', locationV.id).as('b')
+            g.V().has('oppportunity', 'id', opportunityId).as('a').
+                V().has('location', 'name', locationName).as('b')
                 .addE('IS_IN')
                 .from_('a').to('b')).next();
 }
 
-async function createEssentialEdge(entityV, opportunityV) {
-    return entityV.addE("ESSENTIAL_TO").to(opportunityV).next();
+async function createEssentialEdge(entityName, opportunityId) {
+    return g.V().has('entity', 'name', entityName).out('ESSENTIAL_TO').has('opportunity', 'id', opportunityId).fold()
+        .coalesce(
+            __.unfold(),
+            g.V().has('entity', 'name', entityName).as('a').
+                V().has('opportunity', 'id', opportunityId).as('b')
+                .addE('ESSENTIAL_TO')
+                .from_('a').to('b')).next();
 }
 
 async function getLocations() {

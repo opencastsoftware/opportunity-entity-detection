@@ -25,9 +25,9 @@ async function handler(event) {
             const { publishedDate, questionsDeadlineDate, closingDate } = await datesModules.getDates(url);
 
             console.log('creating organisation, location and opportunity vertex');
-            const organisationV = await graphUtils.createOrganisation(organisation);
-            const locationV = await graphUtils.createLocation(location);
-            const opportunityV = await graphUtils.createOpportunity({
+            await graphUtils.createOrganisation(organisation);
+            await graphUtils.createLocation(location);
+            await graphUtils.createOpportunity({
                 id,
                 title,
                 type,
@@ -36,7 +36,7 @@ async function handler(event) {
                 closingDate
             });
 
-            await graphUtils.createOpprtunityLocationEdge(opportunityV, locationV);
+            await graphUtils.createOpprtunityLocationEdge(id, location);
 
             const eSkills = await essentialSkillsModule.getEssentialSkills(url);
             const { Entities: eSkillEntities } = await entitiesModule.getEntities(eSkills.text);
@@ -48,9 +48,9 @@ async function handler(event) {
                 console.log('Adding key essential entities', keyEssentialEntities);
                 await Promise.all(keyEssentialEntities.map(async ({ Text: entityName }) => {
                     // Add the entity
-                    const entityV = await graphUtils.createEntity(entityName);
+                    await graphUtils.createEntity(entityName);
                     // Add the "ESSENTIAL" edge to the vertex
-                    await graphUtils.createEssentialEdge(entityV, opportunityV);
+                    await graphUtils.createEssentialEdge(entityName, id);
                 }));
             }
 
