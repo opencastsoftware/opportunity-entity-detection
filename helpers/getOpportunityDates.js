@@ -1,6 +1,7 @@
 const osmosis = require("osmosis");
 
 module.exports.getDates = async (url) => {
+    console.log("in get date function");
     let dates = {};
     return new Promise((resolve) => {
         osmosis
@@ -12,6 +13,7 @@ module.exports.getDates = async (url) => {
                 closingDate: "div[3]/dd"
             })
             .data(x => {
+                console.log(x);
                 dates.publishedDate = Date.parse(x.publishedDate.match(/\d+ \w+ \d+/) + " UTC");
                 dates.questionsDeadlineDate = Date.parse(
                     x.questionsDeadlineDate.match(/\d+ \w+ \d+/) + " UTC"
