@@ -53,7 +53,8 @@ async function save() {
 async function createOpprtunityLocationEdge(opportunityV, locationV) {
     console.log(opportunityV);
     console.log(typeof opportunityV);
-    return opportunityV.addE('IS_IN').to(locationV).next();
+    //return opportunityV.addE('IS_IN').to(locationV).next();
+    return g.V().addE("IS_IN").from('opportunity', 'id', opportunityV.id).to('location', 'id', locationV.id).next();
 }
 
 async function createEssentialEdge(entityV, opportunityV) {
