@@ -61,6 +61,7 @@ async function createOpprtunityLocationEdge(opportunityId, locationName) {
 }
 
 async function createEssentialEdge(entityName, opportunityId) {
+    console.log('adding edge: ' + entityName + " -> " + opportunityId)
     return g.V().has('entity', 'name', entityName).out('ESSENTIAL_TO').has('opportunity', 'id', opportunityId).fold()
         .coalesce(
             __.unfold(),

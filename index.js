@@ -68,18 +68,12 @@ async function handler(event) {
 
         }));
 
-        console.log('saving to neptune');
-        //await graphUtils.save();
-
         const organisations = await graphUtils.getOrganisations();
         console.log('organisations', organisations);
         const locations = await graphUtils.getLocations();
         console.log('locations', locations);
         const opportunities = await graphUtils.getOpportunities();
         console.log('opportunities', opportunities);
-
-        console.log('saving to neptune');
-        await graphUtils.save();
 
         return {
             statusCode: 201,
