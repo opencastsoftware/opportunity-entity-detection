@@ -52,6 +52,7 @@ async function save() {
 
 async function createOpprtunityLocationEdge(opportunityV, locationV) {
     console.log(opportunityV);
+    console.log(typeof opportunityV);
     return opportunityV.addE('IS_IN').to(locationV).next();
 }
 
