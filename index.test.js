@@ -31,7 +31,8 @@ jest.mock('./helpers/graphUtils', () => {
         getOrganisations: jest.fn().mockResolvedValue(true),
         getOpportunities: jest.fn().mockResolvedValue(true),
         save: jest.fn().mockResolvedValue(true),
-        createOpprtunityLocationEdge: jest.fn().mockResolvedValue(true)
+        createOpprtunityLocationEdge: jest.fn().mockResolvedValue(true),
+        createNiceToHaveEdge: jest.fn().mockResolvedValue(true)
     }
 })
 

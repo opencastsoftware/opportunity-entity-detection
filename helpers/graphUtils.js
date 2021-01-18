@@ -51,6 +51,7 @@ async function save() {
 }
 
 async function createOpprtunityLocationEdge(opportunityId, locationName) {
+    console.log('adding IS_IN edge: ' + opportunityId + " -> " + locationName)
     return g.V().has('opportunity', 'id', opportunityId).out('IS_IN').has('location', 'name', locationName).fold()
         .coalesce(
             __.unfold(),
@@ -61,13 +62,24 @@ async function createOpprtunityLocationEdge(opportunityId, locationName) {
 }
 
 async function createEssentialEdge(entityName, opportunityId) {
-    console.log('adding edge: ' + entityName + " -> " + opportunityId)
+    console.log('adding ESSENTIAL_TO edge: ' + entityName + " -> " + opportunityId)
     return g.V().has('entity', 'name', entityName).out('ESSENTIAL_TO').has('opportunity', 'id', opportunityId).fold()
         .coalesce(
             __.unfold(),
             g.V().has('entity', 'name', entityName).as('a').
                 V().has('opportunity', 'id', opportunityId).as('b')
                 .addE('ESSENTIAL_TO')
+                .from_('a').to('b')).next();
+}
+
+async function createNiceToHaveEdge(entityName, opportunityId) {
+    console.log('adding OPTIONAL_FOR edge: ' + entityName + " -> " + opportunityId)
+    return g.V().has('entity', 'name', entityName).out('OPTIONAL_FOR').has('opportunity', 'id', opportunityId).fold()
+        .coalesce(
+            __.unfold(),
+            g.V().has('entity', 'name', entityName).as('a').
+                V().has('opportunity', 'id', opportunityId).as('b')
+                .addE('OPTIONAL_FOR')
                 .from_('a').to('b')).next();
 }
 
@@ -111,5 +123,6 @@ module.exports = {
     getOpportunities,
     getOrganisations,
     save,
-    createOpprtunityLocationEdge
+    createOpprtunityLocationEdge,
+    createNiceToHaveEdge
 }

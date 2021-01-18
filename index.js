@@ -62,7 +62,10 @@ async function handler(event) {
             if (keyNiceToHaveEntities.length) {
                 console.log('Adding key NiceToHave entities', keyNiceToHaveEntities);
                 await Promise.all(keyNiceToHaveEntities.map(async ({ Text: entityName }) => {
+                    // Add the entity
                     await graphUtils.createEntity(entityName);
+                    // Add the "OPTIONAL_FOR" edge to the vertex
+                    await graphUtils.createNiceToHaveEdge(entityName, id);
                 }));
             }
 
