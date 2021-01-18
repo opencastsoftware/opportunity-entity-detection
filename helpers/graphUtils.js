@@ -83,6 +83,17 @@ async function createNiceToHaveEdge(entityName, opportunityId) {
                 .from_('a').to('b')).next();
 }
 
+async function createOpprtunityOrganisationEdge(opportunityId, organisation) {
+    console.log('adding ADVERTISES edge: ' + opportunityId + " -> " + organisation)
+    return g.V().has('organisation', 'name', organisation).out('ADVERTISES').has('opportunity', 'oppId', opportunityId).fold()
+        .coalesce(
+            __.unfold(),
+            g.V().has('organisation', 'name', organisation).as('a').
+                V().has('opportunity', 'oppId', opportunityId).as('b')
+                .addE('ADVERTISES')
+                .from_('a').to('b')).next();
+}
+
 async function getLocations() {
     return g.V().hasLabel('location').values('name').toList();
 }
@@ -124,5 +135,6 @@ module.exports = {
     getOrganisations,
     save,
     createOpprtunityLocationEdge,
-    createNiceToHaveEdge
+    createNiceToHaveEdge,
+    createOpprtunityOrganisationEdge
 }

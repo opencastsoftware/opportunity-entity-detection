@@ -32,7 +32,8 @@ jest.mock('./helpers/graphUtils', () => {
         getOpportunities: jest.fn().mockResolvedValue(true),
         save: jest.fn().mockResolvedValue(true),
         createOpprtunityLocationEdge: jest.fn().mockResolvedValue(true),
-        createNiceToHaveEdge: jest.fn().mockResolvedValue(true)
+        createNiceToHaveEdge: jest.fn().mockResolvedValue(true),
+        createOpprtunityOrganisationEdge: jest.fn().mockResolvedValue(true)
     }
 })
 
@@ -135,11 +136,11 @@ describe('handler', () => {
         expect(graphModule.createEntity).toHaveBeenCalledWith('NodeJS');
     })
 
-    /*it('should call graph utils create essential entity edge for each entity found', async () => {
+    it('should call graph utils create essential entity edge for each entity found', async () => {
         await entityDetection.handler(event);
         expect(graphModule.createEssentialEdge).toHaveBeenCalledWith('C#', 'test id');
         expect(graphModule.createEssentialEdge).toHaveBeenCalledWith('NodeJS', 'test id');
-    })*/
+    })
 
 });
 

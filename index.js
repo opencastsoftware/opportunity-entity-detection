@@ -36,8 +36,6 @@ async function handler(event) {
                 closingDate
             });
 
-            await graphUtils.createOpprtunityLocationEdge(id, location);
-
             const eSkills = await essentialSkillsModule.getEssentialSkills(url);
             const { Entities: eSkillEntities } = await entitiesModule.getEntities(eSkills.text);
 
@@ -69,7 +67,14 @@ async function handler(event) {
                 }));
             }
 
+            //creating the edges
+            console.log("CREATING EDGES");
+            await graphUtils.createOpprtunityLocationEdge(id, location);
+            await graphUtils.createOpprtunityOrganisationEdge(id, organisation);
+
         }));
+
+
 
         const organisations = await graphUtils.getOrganisations();
         console.log('organisations', organisations);
