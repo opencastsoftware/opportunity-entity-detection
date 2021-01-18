@@ -25,11 +25,11 @@ async function createLocation(locName) {
 async function createOpportunity(opp) {
     const { id, title, date, type, publishedDate, questionsDeadlineDate, closingDate } = opp;
 
-    return g.V().has('opportunity', 'id', id).fold().coalesce(
+    return g.V().has('opportunity', 'oppId', id).fold().coalesce(
         __.unfold(),
         __.addV('opportunity')
             .property('name', title)
-            .property('id', id)
+            .property('oppId', id)
             .property('type', type)
             .property('publishedDate', publishedDate)
             .property('questionsDeadlineDate', questionsDeadlineDate)
@@ -52,10 +52,10 @@ async function save() {
 
 async function createOpprtunityLocationEdge(opportunityId, locationName) {
     console.log('adding IS_IN edge: ' + opportunityId + " -> " + locationName)
-    return g.V().has('opportunity', 'id', opportunityId).out('IS_IN').has('location', 'name', locationName).fold()
+    return g.V().has('opportunity', 'oppId', opportunityId).out('IS_IN').has('location', 'name', locationName).fold()
         .coalesce(
             __.unfold(),
-            g.V().has('oppportunity', 'id', opportunityId).as('a').
+            g.V().has('oppportunity', 'oppId', opportunityId).as('a').
                 V().has('location', 'name', locationName).as('b')
                 .addE('IS_IN')
                 .from_('a').to('b')).next();
@@ -63,22 +63,22 @@ async function createOpprtunityLocationEdge(opportunityId, locationName) {
 
 async function createEssentialEdge(entityName, opportunityId) {
     console.log('adding ESSENTIAL_TO edge: ' + entityName + " -> " + opportunityId)
-    return g.V().has('entity', 'name', entityName).out('ESSENTIAL_TO').has('opportunity', 'id', opportunityId).fold()
+    return g.V().has('entity', 'name', entityName).out('ESSENTIAL_TO').has('opportunity', 'oppId', opportunityId).fold()
         .coalesce(
             __.unfold(),
             g.V().has('entity', 'name', entityName).as('a').
-                V().has('opportunity', 'id', opportunityId).as('b')
+                V().has('opportunity', 'oppId', opportunityId).as('b')
                 .addE('ESSENTIAL_TO')
                 .from_('a').to('b')).next();
 }
 
 async function createNiceToHaveEdge(entityName, opportunityId) {
     console.log('adding OPTIONAL_FOR edge: ' + entityName + " -> " + opportunityId)
-    return g.V().has('entity', 'name', entityName).out('OPTIONAL_FOR').has('opportunity', 'id', opportunityId).fold()
+    return g.V().has('entity', 'name', entityName).out('OPTIONAL_FOR').has('opportunity', 'oppId', opportunityId).fold()
         .coalesce(
             __.unfold(),
             g.V().has('entity', 'name', entityName).as('a').
-                V().has('opportunity', 'id', opportunityId).as('b')
+                V().has('opportunity', 'oppId', opportunityId).as('b')
                 .addE('OPTIONAL_FOR')
                 .from_('a').to('b')).next();
 }
