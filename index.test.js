@@ -2,7 +2,7 @@ const fs = require("fs");
 const { join } = require("path");
 const nock = require("nock");
 
-const graphModule = require('./helpers/graphUtils');
+const graphModule = require('./helpers/neo4jUtils');
 
 const essentialSkillsModule = require('./helpers/getEssentialSkills');
 const niceSkillsModule = require('./helpers/getNiceToHaveSkills');
@@ -19,13 +19,18 @@ jest.mock('./helpers/getEntities', () => {
     }
 });
 
-jest.mock('./helpers/graphUtils', () => {
+jest.mock('./helpers/neo4jUtils', () => {
     return {
         createLocation: jest.fn().mockResolvedValue(true),
         createOpportunity: jest.fn().mockResolvedValue(true),
         createOrganisation: jest.fn().mockResolvedValue(true),
         createEntity: jest.fn().mockResolvedValue(true),
         createEssentialEdge: jest.fn().mockResolvedValue(true),
+
+        createIsInEdge: jest.fn().mockResolvedValue(true),
+        createOptionalEdge: jest.fn().mockResolvedValue(true),
+        createAdvertisesEdge: jest.fn().mockResolvedValue(true),
+
 
         getLocations: jest.fn().mockResolvedValue(true),
         getOrganisations: jest.fn().mockResolvedValue(true),

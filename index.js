@@ -1,5 +1,5 @@
 
-const graphUtils = require('./helpers/graphUtils');
+// const graphUtils = require('./helpers/graphUtils');
 const essentialSkillsModule = require('./helpers/getEssentialSkills');
 const niceToHaveSkillsModule = require('./helpers/getNiceToHaveSkills');
 const entitiesModule = require('./helpers/getEntities');
