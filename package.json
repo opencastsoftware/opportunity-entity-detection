@@ -4,7 +4,9 @@
   "description": "Reads opportunities from a queue and finds the entities in the skills section",
   "main": "index.js",
   "dependencies": {
+    "express": "^4.17.1",
     "gremlin": "^3.4.9",
+    "neo4j-driver": "^4.2.2",
     "osmosis": "^1.1.10"
   },
   "devDependencies": {

@@ -1,7 +1,6 @@
 const osmosis = require("osmosis");
 
 module.exports.getDates = async (url) => {
-    console.log("in get date function");
     let dates = {};
     return new Promise((resolve) => {
         osmosis

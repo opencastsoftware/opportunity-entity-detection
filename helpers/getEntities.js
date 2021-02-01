@@ -11,3 +11,4 @@ module.exports.getEntities = async (text) => {
     }
     return comprehend.detectEntities(params).promise();
 }
+
